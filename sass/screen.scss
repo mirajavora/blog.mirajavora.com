@@ -1,10 +1,15 @@
 @import "compass";
-@include global-reset;
 
-@import "custom/colors";
-@import "custom/fonts";
-@import "custom/layout";
-@import "base";
-@import "partials";
-@import "plugins/**/*";
-@import "custom/styles";
+@import "/bootstrap-theme/bootstrap.min.css";
+@import "/bootstrap-theme/focus.css";
+@import "/bootstrap-theme/font-awesome.css";
+
+//@include global-reset;
+
+//@import "custom/colors";
+//@import "custom/fonts";
+//@import "custom/layout";
+//@import "base";
+//@import "partials";
+//@import "plugins/**/*";
+//@import "custom/styles";

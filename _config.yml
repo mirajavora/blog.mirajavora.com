@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
+url: http://blog.mirajavora.com
+title: Mira Javora Blog
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: Mira Javora
 simple_search: https://www.google.com/search
 description:
 
