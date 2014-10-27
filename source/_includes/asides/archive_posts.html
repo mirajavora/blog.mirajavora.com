@@ -1,0 +1,13 @@
+<section>
+  <h3>Archive</h3>
+  <ul id="recent_posts">
+      {% for post in site.posts reverse %}
+      {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+      {% unless year == this_year %}
+      {% assign year = this_year %}
+      <h2>{{ year }}</h2>
+      {% endunless %}
+        <p><a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></p>
+      {% endfor %}
+  </ul>
+</section>
