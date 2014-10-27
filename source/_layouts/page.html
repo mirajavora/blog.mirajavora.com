@@ -1,51 +1,49 @@
 ---
 layout: default
 ---
-<div id="content">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span9">
+<div class="container-fluid">
+    {% if page.title %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="page-header" id="page-title">
+                <h1>{{ page.title }}</h1>
 
-
-                <article role="article">
-                  {% if page.title %}
-                  <header>
-                    <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
-                    {% if page.date %}<p class="meta">{% include post/date.html %}{{ time }}</p>{% endif %}
-                  </header>
-                  {% endif %}
-                  {{ content }}
-                  {% unless page.footer == false %}
-                    <footer>
-                      {% if page.date or page.author %}<p class="meta">
-                        {% if page.author %}{% include post/author.html %}{% endif %}
-                        {% include post/date.html %}{% if updated %}{{ updated }}{% else %}{{ time }}{% endif %}
-                        {% if page.categories %}{% include post/categories.html %}{% endif %}
-                      </p>{% endif %}
-                      {% unless page.sharing == false %}
-                        {% include post/sharing.html %}
-                      {% endunless %}
-                    </footer>
-                  {% endunless %}
-                </article>
-                {% if site.disqus_short_name and page.comments == true %}
-                  <section>
-                    <h1>Comments</h1>
-                    <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
-                  </section>
-                {% endif %}
-                </div>
-            <div class="span3">
-                {% unless page.sidebar == false %}
-                <aside class="sidebar">
-                  {% if site.page_asides.size %}
-                    {% include_array page_asides %}
-                  {% else %}
-                    {% include_array default_asides %}
-                  {% endif %}
-                </aside>
-                {% endunless %}
+                {% if page.categories %}{% include post/categories.html %}{% endif %}
+                <p class="tags">
+                    <span>Tags:</span>
+                    <a href="/Tags/WebAPI">WebAPI</a>, <a href="/Tags/C%23">C#</a>, <a href="/Tags/AspNet">AspNet</a>
+                </p>
             </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row-fluid">
+        <div class="span9">
+            <div class="zone zone-content"><article class="content-item blog-post">
+                {% if page.date %}
+                    <header>
+                        <div class="metadata">
+                            <div class="published">{% include post/date.html %}{{ time }}</div>
+                        </div>
+                    </header>
+                {% endif %}
+
+                <article>
+                    {{ content }}
+                </article>
+            </div>
+        </div>
+        <div class="span3">
+            {% unless page.sidebar == false %}
+            <aside class="sidebar">
+                {% if site.page_asides.size %}
+                {% include_array page_asides %}
+                {% else %}
+                {% include_array default_asides %}
+                {% endif %}
+            </aside>
+            {% endunless %}
         </div>
     </div>
 </div>
