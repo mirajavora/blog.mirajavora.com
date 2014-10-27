@@ -1,7 +1,7 @@
 <article class="content-item row-divider blog-post">
     <header>
         <h2><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></h2>
-        {% if category != '0' %}
+        {% if post.categories.size != 0 %}
         <p class="tags">
             <span>Tags:</span>
             {{ post.categories | category_links }}
@@ -14,11 +14,17 @@
     </header>
 
     <div class="row-fluid">
-        <div class="span8">
-            <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
-        </div>
-        <div class="span4">
-            <img src="http://blog.mirajavora.com/Media/Default/WindowsLiveWriter/NDCOslo2013TopPics_9361/IMG_1079_thumb.jpg" class="intro-image">
-        </div>
+        {% if post.image %}
+            <div class="span8">
+                <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
+            </div>
+            <div class="span4">
+                <img src="http://blog.mirajavora.com/Media/Default/WindowsLiveWriter/NDCOslo2013TopPics_9361/IMG_1079_thumb.jpg" class="intro-image">
+            </div>
+        {% else %}
+            <div class="span12">
+                <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
+            </div>
+        {% endif %}
     </div>
 </article>

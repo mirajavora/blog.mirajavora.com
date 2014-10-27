@@ -5,6 +5,7 @@ date: 2013-06-16 13:52:04 +0000
 comments: true
 description: "Override the html description"
 categories: []
+image: http://blog.mirajavora.com/Media/Default/WindowsLiveWriter/NDCOslo2013TopPics_9361/IMG_1079_thumb.jpg
 ---
 
 I just got back to  NDC Oslo. It was a great week filled with some quality speakers and content. It’s very hard to pick what I enjoyed the most, because the overall quality was just so high. Nevertheless, I’m going to attempt it :-) Bear in mind it’s my subjective view and I’m happy if you disagree with me. I will update the post once the videos are up.
