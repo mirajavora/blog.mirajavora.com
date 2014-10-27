@@ -3,7 +3,7 @@ layout: post
 title: "Authenticate Web API using Access Tokens"
 date: 2014-04-15 22:52:30 +0000
 comments: true
-tags: [WebApi, C#, AspNet]
+categories: [WebApi, C#, AspNet]
 ---
 
 In a common Web API scenario, you may want to secure your endpoints so that certain actions can only be executed by authenticated users who posses the correct permissions and are authorised to access the endpoints. For example, you would not want expose your DELETE endpoint of a resource to the general public.
