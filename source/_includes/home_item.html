@@ -1,0 +1,24 @@
+<article class="content-item row-divider blog-post">
+    <header>
+        <h2><a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a></h2>
+
+        <p class="tags">
+            <span>Tags:</span>
+            {% for tag in post.tags %}
+                <a href="/Tags/WebAPI">{{tag}}</a>,
+            {% endfor %}
+        </p>
+        <div class="metadata">
+            <div class="published">{% include post/date.html %}{{ time }}</div>
+        </div>
+    </header>
+
+    <div class="row-fluid">
+        <div class="span8">
+            <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
+        </div>
+        <div class="span4">
+            <img src="http://blog.mirajavora.com/Media/Default/WindowsLiveWriter/NDCOslo2013TopPics_9361/IMG_1079_thumb.jpg" class="intro-image">
+        </div>
+    </div>
+</article>
