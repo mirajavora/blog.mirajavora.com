@@ -1,23 +1,18 @@
 ---
 layout: default
 ---
-<div class="container-fluid">
-    {% if page.title %}
+
+{% if page.title %}
     <div class="row-fluid">
         <div class="span12">
             <div class="page-header" id="page-title">
                 <h1>{{ page.title }}</h1>
-
-                {% if page.categories %}{% include post/categories.html %}{% endif %}
-                <p class="tags">
-                    <span>Tags:</span>
-                    <a href="/Tags/WebAPI">WebAPI</a>, <a href="/Tags/C%23">C#</a>, <a href="/Tags/AspNet">AspNet</a>
-                </p>
             </div>
         </div>
     </div>
-    {% endif %}
+{% endif %}
 
+<div class="container-fluid">
     <div class="row-fluid">
         <div class="span9">
             <div class="zone zone-content"><article class="content-item blog-post">
@@ -36,7 +31,7 @@ layout: default
         </div>
         <div class="span3">
             {% unless page.sidebar == false %}
-            <aside class="sidebar">
+            <aside class="zone-aside-second">
                 {% if site.page_asides.size %}
                 {% include_array page_asides %}
                 {% else %}

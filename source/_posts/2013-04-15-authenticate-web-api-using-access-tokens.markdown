@@ -21,7 +21,7 @@ The first thing the user needs to do is exchange the user credentials for an acc
 
 In the action below, username and password is captured by the login model and passed down to the authentication service. If the auth service returns a valid user, we can create a short-lived auth token for the user to use. The token is then set in a cookie and returned as part of the response to the user.
 
-{% highlight ruby %}
+{% highlight c# %}
 [HttpPost]
 public ActionResult Index(LoginModel model)
 {
