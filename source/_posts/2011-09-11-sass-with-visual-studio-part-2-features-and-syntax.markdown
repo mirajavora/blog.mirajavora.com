@@ -40,54 +40,87 @@ SASS lets you create variables and re-use them throughout. These may be plain yo
 
 Declaring SASS variables
 
-
-
+{% highlight css %}
+    $primary-color: #ccc;
+    $secondary-color: #ebebeb;
+    $grid-height: 20;
+     
+    a { color: $primary-color;}
+    a:hover { color: $secondary-color;}
+    div.test { height: $grid-height + 10 + px;}
+{% endhighlight %}
 
 results into
 
-
-
-This will pull down and install the compass gem and all the dependencies.
-
-Setup
-
-Once you have pulled down the gem, you can call compass to set-up your project. This will set-up the initial SCSS source files and folder structure.
-
-You can either chose to go for the default setup
-
-{% highlight ruby %}
-compass create Content
-{% endhighlight %}
-
-or you can try add params to customise the setup
-
-{% highlight ruby %}
-$ compass create Content --sass-dir "src" --css-dir "css" --javascripts-
-dir "Javascript"
-{% endhighlight %}
- 
-
-This will create the directory structure, config file, adds a default blue-prints and few examples. The example uses “Content” as the project folder, where all CSS, JS, SCSS and images are located.
-
-If you prefer to create just the config file with the folder structure, add the - -bare param
-
-{% highlight ruby %}
-$ compass create Content --bare --sass-dir "src" --css-dir "css" --javascripts-
-dir "Javascript
+{% highlight css %}
+    a {
+      color: #cccccc;
+    }
+    a:hover {
+      color: #ebebeb;
+    }
+    div.test {
+      height: 30px;
+    }
 {% endhighlight %}
 
 
-{% highlight ruby %}
-[rectangle setX: 10 y: 10 width: 20 height: 20];
+Really Cool Stuff- Mixins and Inheritance
+-------------------
+
+One of the key features of sass is the ability to declare mixins. These are basically functions that you can declare to run common tasks.  For example, we can declare a function that handles background images for us
+
+{% highlight css %}
+    @mixin background($url, $color:transparent, $repeat:no-repeat, $position:0 0) {
+        background: $color url($url) $repeat $position;
+    }
+     
+    div {
+        @include background('/some/url');
+    }
+     
+    div.second {
+        @include background('/some/url', '#ebebeb');
+    }
 {% endhighlight %}
-  
-Watch the folder for changes
 
-The last thing you need to do, is to watch the SASS folder for changes. You can manually run compass to translate the SCSS files to CSS. However, it’s more elegant to have compass watch the folder and automatically create the CSS file when a change is detected. You can also run the command during your build process with different setup (compression, etc).
+which will transform into
 
-You can either call the watch command from your console
+{% highlight css %}
+    div {
+      background: transparent url("/some/url") no-repeat 0 0;
+    }
+    div.second {
+      background: "#ebebeb" url("/some/url") no-repeat 0 0;
+    }
+{% endhighlight %}
 
-![Console Watch](/images/posts/sass/blog-compass-watch_thumb.png "Console")
+The Really, Really Cool Stuff – Compass Libraries
+-------------------
 
-What we do is have a bat file in the watch command in the root of every project.
+Now since we use compass, we can also tap into some existing methods and libraries inside compass. The compass core includes reset, layout and typography helpers, CSS helpers and CSS3 libs and utilities.
 
+Check them out at [http://compass-style.org/reference/compass/](http://compass-style.org/reference/compass/)
+
+Uber Cool Stuff – Maths, Operations, Loops and conditions
+-------------------
+
+Bring it all together, and you can go wild … quite wild … something like this
+
+{% highlight css %}
+    $gutterWidth: 20;
+    $columns: 12
+    $widthForColumns: $totalWidth - ($columns * $gutterWidth);
+    $columnWidth: floor($widthForColumns/$columns);
+     
+    @for $i from 1 through $columns {
+      .container_12 .grid_#{$i} { width:(($columnWidth*$i) + (($gutterWidth*$i)-$gutterWidth))+px; }
+    }
+{% endhighlight %}
+
+Related Articles
+-------------------
+
+[SASS with Visual Studio Part 1 Introduction](/introduction-to-sass-with-visual-studio/)<br/>
+[SASS with Visual Studio Part 2 Features and Syntax](/sass-with-visual-studio-part-2-features-and-syntax/)<br/>
+[SASS with Visual Studio Part 3 Real World](/sass-with-visual-studio-part-3-real-world/)<br/>
