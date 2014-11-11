@@ -19,7 +19,7 @@
                 <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
             </div>
             <div class="span4">
-                <img src="http://blog.mirajavora.com/Media/Default/WindowsLiveWriter/NDCOslo2013TopPics_9361/IMG_1079_thumb.jpg" class="intro-image">
+                <img src="{{ post.image }}" class="intro-image">
             </div>
         {% else %}
             <div class="span12">

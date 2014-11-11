@@ -1,33 +1,51 @@
 ---
 layout: post
-title: "SASS with Visual Studio Part 1 Introduction"
-date: 2011-09-11 15:01:30 +0000
+title: "SASS with Visual Studio Part 2 Features and Syntax"
+date: 2011-09-11 23:00:00 +0000
 comments: true
 categories: [SASS, CSS, Visual Studio]
-image: /images/posts/sass/sass_thumb.jpg
 ---
 
-Syntactically Awesome Stylesheets (SASS) aims to make writing CSS easy, re-usable and less repetitive.  The new SCSS (Sassy CSS) syntax makes use of variables, mixins, nested rules and inheritance to achieve this goal. Furthermore, I will show you how to use compass to leverage in-built functionality. This series of posts will not argue between SASS and LESS, it will be a quick guide on how to get up and running with SASS within VS and how SASS can help you.
+SASS is a super-set of CSS, that means, any existing CSS that you already wrote will just work. What we usually do, is paste any legacy CSS (if any) to our SASS file and take it from there. I’ve posted few examples of the syntax below. In my next post, I will focus on the real-world usage of SASS.
 <!--more-->
 
-Install Ruby
+The useful stuff – Nested Syntax
 -------------------
 
-The first thing to do is to install ruby. The quickest and easiest is to run ruby installer from [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
+If you like tidy CSS syntax, you’ll love this. Not my most favourite, but still worth mentioning. So something like this
 
-![Ruby Installer](/images/posts/sass/ruby-install_thumb.png "Ruby Installer")
+{% highlight css %}
+    ul
+    {
+        margin: 0;
+        li 
+        {
+            float: left;
+        }
+    }
+{% endhighlight %}
+
+will be transferred into
+
+{% highlight css %}
+    ul { margin: 0; }
+    ul li {float: left;}
+{% endhighlight %}
 
  
-Get Compass Gem
+Cool Stuff – Variables
 -------------------
 
-Next, get the compass gem. Compass provides a framework that will translate the SCSS code into CSS. However, it also contains a bunch of other libraries that you can then make full use of. Most notably mixins around CSS3 functionality, reset, layouts, but also cool helpers for images, prefixes, files urls and loads more.
+SASS lets you create variables and re-use them throughout. These may be plain your colours that you re-use or size values. Using SASS syntax, you can perform various calculations on them if need be.
 
-To get the gem, open up the command prompt and type in
+Declaring SASS variables
 
-{% highlight ruby %}
-gem install compass
-{% endhighlight %}
+
+
+
+results into
+
+
 
 This will pull down and install the compass gem and all the dependencies.
 
