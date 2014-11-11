@@ -102,3 +102,4 @@ Related Articles
 [SASS with Visual Studio Part 1 Introduction](/introduction-to-sass-with-visual-studio/)<br/>
 [SASS with Visual Studio Part 2 Features and Syntax](/sass-with-visual-studio-part-2-features-and-syntax/)<br/>
 [SASS with Visual Studio Part 3 Real World](/sass-with-visual-studio-part-3-real-world/)<br/>
+[SASS/SCSS and Compass Part 4 Spriting](/sass-part-4-spriting/)<br/>
