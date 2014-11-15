@@ -3,6 +3,7 @@ layout: post
 title: "Setting Properties In Models With Strongly Typed Model Filters ASP.Net MVC C#"
 date: 2011-11-15 18:53:00 +0000
 comments: true
+summary: "I like strongly typed view models in MVC. Typical structure of my site in Razor View Engine includes a page base model that is used in the Layout template and then I use inheritance to add properties to each model or commonly re-used properties. There are various reasons why to avoid dynamic in your models, besides the fact that you cannot use dynamic in master frame using razor."
 categories: [C#, MVC, Visual Studio]
 ---
 

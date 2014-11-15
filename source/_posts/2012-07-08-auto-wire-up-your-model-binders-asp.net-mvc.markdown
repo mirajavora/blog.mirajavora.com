@@ -3,6 +3,7 @@ layout: post
 title: "Auto Wire-Up Your Model Binders ASP.NET MVC"
 date: 2012-07-08 12:25:00 +0000
 comments: true
+summary: "Model binding in MVC attempts to map values from IValueProviders to your specified model.  The value providers (FormValueProvider, QueryStringValueProvider, HttpFileCollectionValueProvider, RouteDataValueProvider, JsonValueProviderFactory … ) abstract the actual value retrieval and binders then handle the value mapping onto the model. You can create custom model binders to abstract and centralise complex mapping logic that would otherwise end up in your controllers or services. When dealing with a larger number of binders, it is good to refactor common logic and enable wiring up of the new binders easily. Instead of having to register each binder one-by-one in global or prefix the type in the actions, we can create our own model binder broker to replace the default MVC DefaultModelBinder."
 categories: [C#, MVC, ASP.NET, Visual Studio]
 ---
 
