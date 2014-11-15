@@ -1,0 +1,84 @@
+---
+layout: post
+title: "Use 51Degrees.mobi to Improve Mobile Traffic Detection"
+date: 2012-10-29 21:56:00 +0000
+comments: true
+image: /images/posts/51degrees/blog-51Degrees-Nuget_thumb.png
+summary: "The default browser compatibilities mobile detection in ASP.NET in System.Web.HttpBrowserCapabilitiesBase is pretty poor. It ignores majority of the mobile devices and since it does not update on regular basis, it will ignore any new devices as well. Simply put, if you are using mobile-specific views then most mobile devices will get only the desktop views, because the device will be not recognised as a mobile device."
+categories: [Asp.Net, Mobile, 51Degrees]
+---
+
+The default browser compatibilities mobile detection in ASP.NET in *System.Web.HttpBrowserCapabilitiesBase* is pretty poor. It ignores majority of the mobile devices and since it does not update on regular basis, it will ignore any new devices as well. Simply put, if you are using [mobile-specific views](http://msdn.microsoft.com/en-us/magazine/hh975347.aspx) then most mobile devices will get only the desktop views, because the device will be not recognised as a mobile device.
+
+You can [add browser definition files to your solution](http://forums.asp.net/t/955969.aspx/1) and specify capabilities for the latest devices. It is however a quick road to hell.
+
+Instead, there are several open source libraries that help you improve the device detection and override the BrowserCapabilities. [51Degrees.mobi](http://51degrees.codeplex.com/) is widely recognised and I had very good experience using it in the past. It contains an amazing [list of the devices](http://51degrees.mobi/Products/DeviceData/DeviceExplorer.aspx) which gets updated on regular basis. It is a freemium product, however, in most cases **you will only need the functionality that is in the free version**.
+
+Add 51Degrees to your solution
+-------------------
+
+blog-51Degrees-Nuget
+
+The easiest way to integrate 51Degrees is by adding a nuget package. The package name is **51Degrees.mobi** and it brings down the FiftyOne.Foundation.dll, 51Degrees.mobi.config config file and /Mobile/Default.aspx page.
+
+If you run .NET 4, the dll automatically registers its own **MobileCapabilitiesProvider** (HttpCapabilitiesBase.BrowserCapabilitiesProvider) using [PreApplicationStartMethod](http://msdn.microsoft.com/en-us/library/system.web.preapplicationstartmethodattribute.aspx) attribute and registers the RedirectModule. If you are on 2.0 or 3.5, you will need to register the detection module yourself in your web.config.
+
+{% highlight xml %}
+<httpModules>
+    <add name="Detector" type="FiftyOne.Foundation.Mobile.Detection.DetectorModule, FiftyOne.Foundation"/>
+</httpModules>
+{% endhighlight %} 
+
+OR
+
+{% highlight xml %}
+<system.webServer>
+    <modules>
+    <remove name="Detector"/>
+    <add name="Detector" type="FiftyOne.Foundation.Mobile.Detection.DetectorModule, FiftyOne.Foundation"/>
+    </modules>
+</system.webServer>
+{% endhighlight %} 
+
+Use Detector To Improve Mobile Detection
+-------------------
+
+If all you want is improvement of your mobile detection, then you can safely delete the 51Degrees.mobi.config and the Default.aspx page. The 51Degrees MobileCapabilitiesProvider will still run and override your IsMobileDevice property. If you use mobile views, you will notice a significant improvement in which devices get the mobile view.
+
+You should not forget that 51Degrees **will regard all tablets as mobile devices**. This will result in IPad getting served the mobile views.  If that’s something that you don’t want, you will need to write extra  filter that will reset the IsMobileDevice to false for all tablet devices.
+
+Redirect Your Mobile Traffic
+-------------------
+
+51Degrees can also be configured to redirect your mobile traffic using the **51Degrees.mobi.config** file in the root of your app. It lets you define either page-by-page redirects or redirects based on patterns or regular expressions.
+
+An example of the redirect setting
+
+{% highlight xml %}
+<redirect firstRequestOnly="true" timeout="20" devicesFile="~/App_Data/Devices.dat" mobilePagesRegex="/(Mobile|Tablet)/">
+    <locations>
+        <location name="tablet" url="~/Tablet/Default.aspx">
+        <add property="IsTablet" matchExpression="true"/>
+        <add property="IsMobile" matchExpression="true"/>
+        </location>
+        <location name="mobile" url="~/Mobile/Default.aspx">
+        <add property="IsMobile" matchExpression="true"/>
+        </location>
+    </locations>
+</redirect>
+{% endhighlight %} 
+
+The sample above will catch the first request of the device and redirect it to either /Mobile/Default.aspx or /Tablet/Default.aspx based on the device features. If you are on premium, you can optionally specify your devices file. You can find out more about the redirect settings in the [51Degrees user guide.](http://51degrees.mobi/Support/Documentation/Foundation/UserGuide.aspx)
+
+What You Get For Your Money
+-------------------
+
+If you decide to buy 51Degrees.mobi, it works out around $1 per day per site instance. You pay a subscription for a year, which gives you fully featured detection and regular updates. And what else do you get? Lots of detail – and I mean lots of it. 
+
+[Here’s a list of all the capabilities that 51Degrees offers](http://51degrees.mobi/Products/DeviceData/PropertyDictionary.aspx) – the premium only features are in red.
+
+Related Links
+-------------------
+
+[51Degrees on Codeplex](http://51degrees.codeplex.com/)<br />
+[What’s New In Asp.NET MVC 4 Mobile Development](http://msdn.microsoft.com/en-us/magazine/hh975347.aspx)<br />
