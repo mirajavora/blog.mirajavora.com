@@ -3,7 +3,7 @@ layout: post
 title: "SignalR – Introduction to SignalR – Quick Chat App"
 date: 2012-09-05 16:04:00 +0000
 comments: true
-image: "/images/posts/signalr/NuGet_thumb.png"
+image: /images/posts/signalr/NuGet_thumb.png"
 summary: "SignalR is an open source async signalling library. It was made by David Fowler and Damian Edwards. In a nutshell, it allows you to pass data between client and server in realtime. It’s not only for web, it has JS, .Net, WP7 and Silverlight clients and supports self-hosting so you can run the SignalR server in win service or web context. It will run on .Net 4.0 or 4.5 and to get websockets running, you will need IIS8 or IIS8 Express. That said, it will run on older versions of IIS and will switch to different transport modes."
 categories: [C#, SignalR, Asp.Net, Visual Studio]
 ---
@@ -134,5 +134,12 @@ Download the code
 
 <iframe height="120" src="https://skydrive.live.com/embed?cid=84E23A97F665C5F2&amp;resid=84E23A97F665C5F2%21233&amp;authkey=AG12GlBD-u_3NBI" frameborder="0" width="98" scrolling="no"></iframe>
 
-
 The sample app is based on MVC4 with Castle Windsor DI and FluentNhibernate. You can edit the connection string in web.config and run /boot to get the schema created.
+
+Related Articles
+-------------------
+
+[SignalR – Introduction To SignalR](/signalr-introduction-to-signalr-quick-chat-app/)<br/>
+[SignalR – Publish Data Using IHubContext](/signalr-push-data-to-clients-using-ihubcontext/)<br/>
+[SignalR – Publish Data Using Proxies](/signalr-publish-data-from-win-forms-using-hub-proxies/)<br/>
+[SignalR – Dependency Injection](/signalr-dependency-injection/)<br/>
