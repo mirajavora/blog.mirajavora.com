@@ -16,14 +16,14 @@
     <div class="row-fluid">
         {% if post.image %}
             <div class="span8">
-                <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
+                <p>{{ post.summary }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
             </div>
             <div class="span4">
                 <img src="{{ post.image }}" class="intro-image">
             </div>
         {% else %}
             <div class="span12">
-                <p>{{ content | excerpt }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
+                <p>{{ post.summary }} <a href="{{ root_url }}{{ post.url }}">more</a></p>
             </div>
         {% endif %}
     </div>
