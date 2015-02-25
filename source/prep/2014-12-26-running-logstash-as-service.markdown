@@ -1,19 +1,24 @@
+
 ---
 layout: post
-title: "Logstash and GrayLog2 - Scaling your Logging"
-date: 2014-12-21 21:52:30 +0000
+title: "Running Logstash as a Service"
+date: 2014-12-26 08:32:30 +0000
 comments: true
 image: /images/posts/logstash/logstash.png
-summary: "As you scale and increase the amount of boxes and systems that you manage visibility and centralised logging becomes crucial. Logstash and Graylog2 are the perfect combo to tackle this problem. If you're interested in logging at scale, read on ;-)"
-categories: [Logging, Log4Net, Graylog2, Logstash, Elasticsearch, Log4j]
+summary: ""
+categories: [Logging, Log4Net, Logstash, Elasticsearch]
 ---
 
-Logging visibility when scaling
+In a previous post, I looked at utilising Logstash to collect various types of logs and centralise the analysis in something like graylog2 for visibility.
+
+As Logstash is JVM based (actually in JRuby), it can run pretty much anywhere JVM, which is awesome.
+This posts looks at setting up Logstash on a Windows machine as a service.
+<!--more-->
+
+Java Service Wrapper
 -------------------
 
-Every decent app produces some kind of logging. Traditionally, this has been achieved by wrapper such as [log4net](http://logging.apache.org/log4net/), [slf4j](http://www.slf4j.org/) [log4j](http://logging.apache.org/log4j/2.x/) and many others.
-The information it produces is invaluable as it's usually the only source of information when troubleshooting issues.
-<!--more-->
+You can't the Logstash JAR directly - the best alternative is to use a JAVA Service wrapper that will look after the windows service lifecycle for you.
 
 As you scale and increase the amount of boxes and systems that you manage, this all becomes a lot more challenging and it's easy to lose visibility. 
 If you manage 30 boxes, you're not going to check every single one of them for logs - it's cumbersome and too painful.
@@ -85,3 +90,8 @@ TODO full logstash config
 
 A result will be a centralised stream of logs that you can easily analyse and create dashboards from. 
 The beauty of logstash is that you can easily add further outputs (eg graphite). 
+
+Related Articles
+-------------------
+
+[Logstash and GrayLog2 - Scaling your Logging](/introduction-to-sass-with-visual-studio/)<br/>
