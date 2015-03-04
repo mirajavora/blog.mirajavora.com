@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Logging custom metrics with StatsD"
-date: 2015-02-21 21:52:30 +0000
+date: 2015-03-10 19:12:30 +0000
 comments: true
 image: /images/posts/logstash/logstash.png
 summary: ""
@@ -34,7 +34,7 @@ As an open source project, it contains a massive amount of plugins. Just to name
 To check out a full list, [go to the logstash documentation](http://logstash.net/docs/1.4.2/).
 
 
-Configuring Logstash
+Aggregating your metrics in Graphite
 -------------------
 
 Each Logstash instance can be configured with multiple inputs and outputs and the topology very much depends on your use cases. 
@@ -45,7 +45,7 @@ For example, you may chose to run a single centralised instance of logstash with
 Did I meantion Logstash has the best logo in the universe?
 
 
-Log4net/Log4j and Logstash
+Visualise your metrics with grafana
 -------------------
 
 In my scenario, I was looking to collect multiple logs from multiple apps on a large number of boxes across multiple data-centres.
