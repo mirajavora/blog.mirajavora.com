@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Logstash and GrayLog2 - Scaling your Logging"
+title: "Logging custom metrics with StatsD"
 date: 2015-02-21 21:52:30 +0000
 comments: true
 image: /images/posts/logstash/logstash.png
-summary: "As you scale and increase the amount of boxes and systems that you manage visibility and centralised logging becomes crucial. Logstash and Graylog2 are the perfect combo to tackle this problem. If you're interested in logging at scale, read on ;-)"
-categories: [Logging, Log4Net, Graylog2, Logstash, Elasticsearch, Log4j]
+summary: ""
+categories: [StatsD, logging, graphite, Logstash, Elasticsearch, Log4j]
 ---
 
-Logging visibility when scaling
+Application monitoring
 -------------------
 
 Every decent app produces some kind of logging. Traditionally, this has been achieved by wrapper such as [log4net](http://logging.apache.org/log4net/), [slf4j](http://www.slf4j.org/) [log4j](http://logging.apache.org/log4j/2.x/) and many others.
@@ -19,7 +19,7 @@ As you scale and increase the amount of boxes and systems that you manage, this 
 If you manage 30 boxes, you're not going to check every single one of them for logs - it's cumbersome and too painful.
 The chance of missing a defect or a misbehaving service also grows.
 
-Logstash
+StatsD
 -------------------
 
 This is where [Logstash](http://logstash.net/) comes in, it's an open-source framework to manage events and logs.
