@@ -1,40 +1,42 @@
 ---
 layout: post
-title: "Logging custom metrics with StatsD"
+title: "Logging metrics with StatsD on JVM"
 date: 2015-03-10 19:12:30 +0000
 comments: true
 image: /images/posts/logstash/logstash.png
 summary: ""
-categories: [StatsD, logging, graphite, Logstash, Elasticsearch, Log4j]
+categories: [StatsD, metrics, graphite, Logstash, Elasticsearch, Log4j]
 ---
 
-Application monitoring
+Application monitoring and service metrics
 -------------------
 
-Every decent app produces some kind of logging. Traditionally, this has been achieved by wrapper such as [log4net](http://logging.apache.org/log4net/), [slf4j](http://www.slf4j.org/) [log4j](http://logging.apache.org/log4j/2.x/) and many others.
-The information it produces is invaluable as it's usually the only source of information when troubleshooting issues.
-<!--more-->
+If you don't track it, you can't measure it. Realtime service and business metrics should be part of any production application. 
+Knowing how is the app performing is as important as measuring whether the product impact of your changes.
 
-As you scale and increase the amount of boxes and systems that you manage, this all becomes a lot more challenging and it's easy to lose visibility. 
-If you manage 30 boxes, you're not going to check every single one of them for logs - it's cumbersome and too painful.
-The chance of missing a defect or a misbehaving service also grows.
+A good set of service metrics lets you effectively monitor the impact of your changes on the app performance. 
+Has your change to multi-threading really achieved the times x throughput? Has the last dependency injection change cause a slow memory leak? 
+Why is there of 404s in your app?
+
+There are a variety of ways to deal with application level metrics. The world of .NET offers you perf counters while unix has a variety of possibilities. 
+Usuaully, I would go for the simplest, most friction-less option. That's why StatsD with Graphite is so appealing.
+
 
 StatsD
 -------------------
 
-This is where [Logstash](http://logstash.net/) comes in, it's an open-source framework to manage events and logs.
-In a nutshell, Logstash can take a variety of inputs, apply filters and transformations on the data that comes in and then push them forward to another store.
+Etsy talks about [measuring everything and anaything](https://codeascraft.com/2011/02/15/measure-anything-measure-everything/). 
+Their real obsession with metrics made them release an awesome library that took great traction - because it's simple and effective.
 
-As an open source project, it contains a massive amount of plugins. Just to name a few
+In essence, [StatsD](https://github.com/etsy/statsd/) server listens on a UDP/TCP port and collects metrics. 
+These are then aggregated and in intervals passed to a back-end of your choice - most likely graphite.
+ 
+The advantage of community is that there is a massive list of client implementations so integrating StatsD into your app is super-straightforward.
+There are multiple clients for node, python, java, ruby, php, .net, go .... and more. [Check out the entire list](https://github.com/etsy/statsd/wiki).
+Also, you will find a bunch of server implementations beyond the original Node.js. If you fancy StatsD on windows machines, check out [statsD.net](https://github.com/lukevenediger/statsd.net).
 
- - Inputs - collectd, raw files, elasticsearch, gelf, unix, s3, redis, rabbitmq
- - Outputs - cloudwatch, boundary, elasticsearch, gelf, graphite, sdout
- - Codecs - JSON, dots, multiline, fluent, graphite and many more
 
-To check out a full list, [go to the logstash documentation](http://logstash.net/docs/1.4.2/).
-
-
-Aggregating your metrics in Graphite
+Integrate StatsD
 -------------------
 
 Each Logstash instance can be configured with multiple inputs and outputs and the topology very much depends on your use cases. 
@@ -45,7 +47,7 @@ For example, you may chose to run a single centralised instance of logstash with
 Did I meantion Logstash has the best logo in the universe?
 
 
-Visualise your metrics with grafana
+Log your metrics
 -------------------
 
 In my scenario, I was looking to collect multiple logs from multiple apps on a large number of boxes across multiple data-centres.
