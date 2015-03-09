@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Logging metrics with StatsD on JVM"
+title: "Logging application metrics with StatsD"
 date: 2015-03-10 19:12:30 +0000
 comments: true
-image: /images/posts/logstash/logstash.png
-summary: ""
-categories: [StatsD, metrics, graphite, Logstash, Elasticsearch, Log4j]
+image: /images/posts/statsd/metrics.png
+summary: "If you don't track it, you can't measure it. Realtime service and business metrics should be part of any production application.  Knowing how is the app performing is as important as measuring whether the product impact of your changes."
+categories: [statsd, metrics, graphite, etsy]
 ---
 
 Application monitoring and service metrics
@@ -17,6 +17,7 @@ Knowing how is the app performing is as important as measuring whether the produ
 A good set of service metrics lets you effectively monitor the impact of your changes on the app performance. 
 Has your change to multi-threading really achieved the times x throughput? Has the last dependency injection change cause a slow memory leak? 
 Why is there of 404s in your app?
+<!--more-->
 
 There are a variety of ways to deal with application level metrics. The world of .NET offers you perf counters while unix has a variety of possibilities. 
 Usuaully, I would go for the simplest, most friction-less option. That's why StatsD with Graphite is so appealing.
@@ -30,22 +31,53 @@ Their real obsession with metrics made them release an awesome library that took
 
 In essence, [StatsD](https://github.com/etsy/statsd/) server listens on a UDP/TCP port and collects metrics. 
 These are then aggregated and in intervals passed to a back-end of your choice - most likely graphite.
+The statsD interface is so simple, it became really popular.
  
 The advantage of community is that there is a massive list of client implementations so integrating StatsD into your app is super-straightforward.
 There are multiple clients for node, python, java, ruby, php, .net, go .... and more. [Check out the entire list](https://github.com/etsy/statsd/wiki).
 Also, you will find a bunch of server implementations beyond the original Node.js. If you fancy StatsD on windows machines, check out [statsD.net](https://github.com/lukevenediger/statsd.net).
 
 
-Integrate StatsD
+Integrate StatsD into your JVM app
 -------------------
 
-Each Logstash instance can be configured with multiple inputs and outputs and the topology very much depends on your use cases. 
-For example, you may chose to run a single centralised instance of logstash with configs pointing to each separate box or on the contrary, run logstash on every instance.
+If you're looking to add statsD into your JVM application, the [java client by tim group](https://github.com/tim-group/java-statsd-client) seemed like the best choice.
+It has zero dependencies and it's pretty straight-forward.
 
-![Different approaches to deploying Logstash](/images/posts/logstash/logstash-diagram.png)
+Add your dependency to mvn
 
-Did I meantion Logstash has the best logo in the universe?
+{% highlight xml %}
 
+    <dependency>
+        <groupId>com.timgroup</groupId>
+        <artifactId>java-statsd-client</artifactId>
+        <version>3.0.1</version>
+    </dependency>
+    
+{% endhighlight %}
+
+And init the statsd client with the prefix, host of the statD server and the port. 
+StatsD has a concept of namespaces, where you can group your metrics - that allows for better visualisation and keeps them neat. The choice of the namespace is yours, depending on what suits you. 
+In bigger deployments you might go for something like "application-name.data-centre.box-name.counter-name". 
+
+{% highlight java %}
+
+    import com.timgroup.statsd.StatsDClient;
+    import com.timgroup.statsd.NonBlockingStatsDClient;
+    
+    public class DiagnosticsService {
+        private static final StatsDClient statsd;
+    
+        public DiagnosticsService(String host, int portNumber) {
+            statsd = = new NonBlockingStatsDClient("your.custom.prefix", host, portNumber);
+        }
+        
+        .....
+    }
+    
+{% endhighlight %}
+
+I tend to have a single statsD client within the app as a singleton wrapped by a diagnostics service.
 
 Log your metrics
 -------------------
