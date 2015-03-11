@@ -44,16 +44,21 @@ Integrate StatsD into your JVM app
 If you're looking to add statsD into your JVM application, the [java client by tim group](https://github.com/tim-group/java-statsd-client) seemed like the best choice.
 It has zero dependencies and it's pretty straight-forward.
 
-Add your dependency to mvn
+Add your dependency to mvn or gradle
 
 {% highlight xml %}
+
+MVN
 
     <dependency>
         <groupId>com.timgroup</groupId>
         <artifactId>java-statsd-client</artifactId>
         <version>3.0.1</version>
     </dependency>
-    
+
+Gradle
+    'com.timgroup:java-statsd-client:3.1.0'
+
 {% endhighlight %}
 
 And init the statsd client with the prefix, host of the statD server and the port. 
@@ -79,107 +84,122 @@ In bigger deployments you might go for something like "application-name.data-cen
 
 I tend to have a single statsD client within the app as a singleton wrapped by a diagnostics service.
 
-Log your metrics
+StatsD Metric Types
 -------------------
 
-In my scenario, I was looking to collect multiple logs from multiple apps on a large number of boxes across multiple data-centres.
-Each of the apps already had logging, which was mostly based on log4net. 
+StatsD supports a range of metric types. These you fit 99% of your metric logging scenarios.
+StatsD also has a concept of flush where the data is sent off to back-ends.
 
-Rather than having a separate configuration for each logstash instance, it was much simpler to use the *UDP plugin* from logstash.
-This means the existing apps just added a new appender that would log to an UDP port and logstash would just pick that up.
+### Counters
+Basic counters that are incremented each time you log against the counter. These are reset to 0 at flush.
+You can also set a sampling interval to tell StatsD you're only sending part of the data-set.
 
-This made the whole logstash config really simple
+{% highlight bash %}
+    your.namespace.counter:1|c
+{% endhighlight %}
 
-{% highlight json %}
-    input { 
-        udp { 
-          port => 5960 
-          codec => plain { 
-            charset => "UTF-8" 
-          } 
-          type => "log4net" 
+
+### Timers
+There are great for monitoring response times of any kind. You tell statsD how long an action took.
+It then automatically works out percentiles, average (mean), standard deviation, sum, and min/max. Really awesome.
+
+{% highlight bash %}
+    your.namespace.response_time:300|ms
+{% endhighlight %}
+
+### Gauges
+Gauges are single values that can be incremented or decremented or set to a specific value. Unlike counters, gauges aren't reset to zero at flush time
+
+
+### Sets
+These count unique set of occurrences between flushes.
+
+
+
+Logging metrics in action
+-------------------
+
+Using the  [JAVA implementation of the StatsD client](https://github.com/tim-group/java-statsd-client) is then pretty straight-forward.
+
+
+{% highlight java %}
+
+    import com.timgroup.statsd.NonBlockingStatsDClient;
+    import com.timgroup.statsd.StatsDClient;
+
+
+    public final class StatsDPerformanceService implements DiagnosticsService {
+
+        private static StatsDClient statsd = null;
+        private static DiagnosticsConfig config;
+
+        public StatsDPerformanceService(DiagnosticsConfig configuration) {
+            config = configuration;
+            statsd = new NonBlockingStatsDClient(
+                    getPrefix(), config.getHost(), config.getPort());
+        }
+
+        private String getPrefix() {
+            return String.format("yourprefix.%s", config.getDc()).toLowerCase();
+        }
+
+        @Override
+        public void incrementCounter(String counterName) {
+            if(config.getEnableMetrics())
+                statsd.incrementCounter(counterName);
+        }
+
+        @Override
+        public void decrementCounter(String counterName) {
+            if(config.getEnableMetrics())
+                statsd.decrementCounter(counterName);
+        }
+
+        @Override
+        public void gauge(String gaugeName, long value) {
+            if(config.getEnableMetrics())
+                statsd.gauge(gaugeName, value);
+        }
+
+        @Override
+        public void recordExecutionTime(String timerName, long value) {
+            if(config.getEnableMetrics())
+                statsd.recordExecutionTime(timerName, value);
         }
     }
-{% endhighlight %}
-
-Changes to the Log4net appender were straight-forward too.
-
-{% highlight xml %}
-... 
-        <appender name="UdpAppender" type="log4net.Appender.UdpAppender">
-            <RemoteAddress value="127.0.0.1" /> <!-- set to 127.0.0.1 and host name mapped to this on my machine (port 80) -->
-            <RemotePort value="5960" />
-            <layout type="log4net.Layout.PatternLayout">
-                <conversionPattern value="%date [%thread] %-5level - %property{log4net:HostName} - MyApplication - %message%newline" />
-            </layout>
-        </appender>
-....
-add the appender to the root loggers
-....
-		<root>
-			<level value="ERROR" />
-			<appender-ref ref="OutputDebugStringAppender" />
-			<appender-ref ref="TraceAppender" />
-			<appender-ref ref="ErrorFileAppender" />
-			<appender-ref ref="UdpAppender" />
-		</root>
 
 {% endhighlight %}
 
+you can then also consider helper methods using runnable and callable to wrap timings around the methods
 
-Adding Graylog2 into the mix
--------------------
+{% highlight java %}
 
-[Graylog2](https://www.graylog2.org/) is one of my favourite tools. The sole purpose is to aggregate and analyse logs in real time. With elastic search sitting underneath,
-it let's you do complex queries on the data and create custom dashboards. 
+        @Override
+        public <T> T executeWithTimer(Callable<T> callable, String counterName) {
+            if(callable == null || counterName == null)
+                return null;
 
-<a href='/images/posts/logstash/screen2_full.png'><img src='/images/posts/logstash/screen2.png' alt='Graylog2' /></a>
-<a href='/images/posts/logstash/screen3_full.png'><img src='/images/posts/logstash/screen3.png' alt='Graylog2' /></a>
+            T result = null;
+            long startTime = System.nanoTime();
+            try {
+                result = callable.call();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            long endTime = System.nanoTime();
 
-If you have an instance of Graylog2 running somewhere, it's easy to use the gelf output to channel all the incoming logs into Logstash into Graylog2.
-The full logstash config could then look something like this:
+            long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+            long milliseconds = duration/1000000;
 
-{% highlight json %}
+            recordExecutionTime(counterName, milliseconds);
+            return result;
+        }
 
-input { 
-	udp { 
-	  port => 5960 
-	  codec => plain { 
-		charset => "UTF-8" 
-	  } 
-	  type => "log4net" 
-	}
-}
+    ... and execute like
 
-
-filter {
-  if [type] == "log4net" {
-    grok {
-      remove_field => message
-      match => { message => "%{TIMESTAMP_ISO8601:sourceTimestamp} \[%{NUMBER:threadid}\] %{LOGLEVEL:loglevel} +- %{IPORHOST:tempHost} - %{GREEDYDATA:tempMessage}" }
-    }
-    if !("_grokparsefailure" in [tags]) {
-      mutate {
-        replace => [ "message" , "%{tempMessage}" ]
-        replace => [ "host" , "%{tempHost}" ]
-      }
-    }
-    mutate {
-      remove_field => [ "tempMessage" ]
-      remove_field => [ "tempHost" ]
-    }
-  }
-}
-
-output {
-  gelf {
-	 host => "your-host-name"
-	 custom_fields => ["environment", "PROD", "service", "BestServiceInTheWorld"]
-	 }
-  stdout { }
-}
+    String result = diagnosticsService.executeWithTimer(
+    () -> randomService.getResult(someVar), "SuperAwesomeNameOfTheCounter");
 
 {% endhighlight %}
 
-A result will be a centralised stream of logs that you can easily analyse and create dashboards from. 
-The beauty of logstash is that you can easily add further outputs (eg graphite). 
+Enjoy! StatsD is great - I'll look at configuring StatD and graphite in my next post.
