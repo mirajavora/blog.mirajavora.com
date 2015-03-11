@@ -11,34 +11,33 @@ categories: [statsd, metrics, graphite, etsy]
 Application monitoring and service metrics
 -------------------
 
-If you don't track it, you can't measure it. Realtime service and business metrics should be part of any production application. 
+*If you don't track it, you can't measure it*. Realtime service and business metrics should be part of any production application.
 Knowing how is the app performing is as important as measuring whether the product impact of your changes.
 
 A good set of service metrics lets you effectively monitor the impact of your changes on the app performance. 
-Has your change to multi-threading really achieved the times x throughput? Has the last dependency injection change cause a slow memory leak? 
-Why is there of 404s in your app?
+Has your change to multi-threading really achieved the times x throughput? Has the last dependency injection change caused a slow memory leak?
+Are there levels of response codes you're not expecting in your app?
 <!--more-->
 
 There are a variety of ways to deal with application level metrics. The world of .NET offers you perf counters while unix has a variety of possibilities. 
-Usuaully, I would go for the simplest, most friction-less option. That's why StatsD with Graphite is so appealing.
+Usuaully, I would go for the **simplest, most friction-less option**. That's why StatsD with Graphite is so appealing.
 
 
 StatsD
 -------------------
 
-Etsy talks about [measuring everything and anaything](https://codeascraft.com/2011/02/15/measure-anything-measure-everything/). 
+Etsy talks about **[measuring everything and anaything](https://codeascraft.com/2011/02/15/measure-anything-measure-everything/)**.
 Their real obsession with metrics made them release an awesome library that took great traction - because it's simple and effective.
 
 In essence, [StatsD](https://github.com/etsy/statsd/) server listens on a UDP/TCP port and collects metrics. 
 These are then aggregated and in intervals passed to a back-end of your choice - most likely graphite.
-The statsD interface is so simple, it became really popular.
  
-The advantage of community is that there is a massive list of client implementations so integrating StatsD into your app is super-straightforward.
+The advantage of the community is that there is a massive list of client implementations so integrating StatsD into your app is super-straightforward.
 There are multiple clients for node, python, java, ruby, php, .net, go .... and more. [Check out the entire list](https://github.com/etsy/statsd/wiki).
 Also, you will find a bunch of server implementations beyond the original Node.js. If you fancy StatsD on windows machines, check out [statsD.net](https://github.com/lukevenediger/statsd.net).
 
 
-Integrate StatsD into your JVM app
+Integrate StatsD client into your JVM app
 -------------------
 
 If you're looking to add statsD into your JVM application, the [java client by tim group](https://github.com/tim-group/java-statsd-client) seemed like the best choice.
@@ -88,7 +87,7 @@ StatsD Metric Types
 -------------------
 
 StatsD supports a range of metric types. These you fit 99% of your metric logging scenarios.
-StatsD also has a concept of flush where the data is sent off to back-ends.
+It also has a concept of a flush interval, where the data is sent off to back-ends.
 
 ### Counters
 Basic counters that are incremented each time you log against the counter. These are reset to 0 at flush.
@@ -100,7 +99,7 @@ You can also set a sampling interval to tell StatsD you're only sending part of 
 
 
 ### Timers
-There are great for monitoring response times of any kind. You tell statsD how long an action took.
+These are great for monitoring response times of any kind. You tell statsD how long an action took.
 It then automatically works out percentiles, average (mean), standard deviation, sum, and min/max. Really awesome.
 
 {% highlight bash %}
@@ -116,7 +115,7 @@ These count unique set of occurrences between flushes.
 
 
 
-Logging metrics in action
+Logging metrics using the JVM client
 -------------------
 
 Using the  [JAVA implementation of the StatsD client](https://github.com/tim-group/java-statsd-client) is then pretty straight-forward.
@@ -140,7 +139,7 @@ Using the  [JAVA implementation of the StatsD client](https://github.com/tim-gro
         }
 
         private String getPrefix() {
-            return String.format("yourprefix.%s", config.getDc()).toLowerCase();
+            return String.format("yourprefix.%s", config.getBoxName()).toLowerCase();
         }
 
         @Override
@@ -174,6 +173,7 @@ you can then also consider helper methods using runnable and callable to wrap ti
 
 {% highlight java %}
 
+
         @Override
         public <T> T executeWithTimer(Callable<T> callable, String counterName) {
             if(callable == null || counterName == null)
@@ -188,8 +188,7 @@ you can then also consider helper methods using runnable and callable to wrap ti
             }
             long endTime = System.nanoTime();
 
-            long duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
-            long milliseconds = duration/1000000;
+            long duration = (endTime - startTime)/1000000;
 
             recordExecutionTime(counterName, milliseconds);
             return result;
