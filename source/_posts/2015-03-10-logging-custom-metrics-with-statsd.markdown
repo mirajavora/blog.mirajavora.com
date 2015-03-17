@@ -190,7 +190,7 @@ you can then also consider helper methods using runnable and callable to wrap ti
 
             long duration = (endTime - startTime)/1000000;
 
-            recordExecutionTime(counterName, milliseconds);
+            recordExecutionTime(counterName, duration);
             return result;
         }
 
