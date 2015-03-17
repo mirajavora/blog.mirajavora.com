@@ -35,7 +35,10 @@ Finally, there is a web component that renders the graphs based on the metrics.
 
 Installing Graphite
 -------------------
-Yes, it's not a
+Yes, it's not as straight-forward as pulling down a single package, but it's worth it!
+First, there's an obvious on Python - graphite supports 2.6 and higher.
+
+
 
 
 

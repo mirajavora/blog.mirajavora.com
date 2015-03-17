@@ -16,6 +16,11 @@ Skyscanner Recent Searches
 
 Adidas Golden Boot Challenge
 -------------------
+<img src="/images/projects/golden-boot-challenge.png" class="post-image-right" alt="Addidas Golden Boot Challenge" />
+
+The Golden Boot Challenge was a project that provided real-time, interactive second screen gaming experience based on Footbal matches.
+Users would answer questions relating to the game during the matches and predict the outcomes - "will he score the penalty?".
+The responses were aggregate, scored and shown to all users in real-time. Awesome mix of tech and an amazing product that Adidas used for their Euro 2012.
 
 
 Twibbon.com

@@ -4,21 +4,16 @@ title: "About Me"
 comments: true
 ---
 
-The early days
--------------------
+Principal software engineer with a strong focus on web-based applications, I'm interested in agile development methods and test-driven development. Excited by solving problems and a fan of big data.
 
-Studied at Anderson High School, Shetland / Gymnazium Zlin, Czech republic. Got first in Information Technology at Heriot-Watt University, Edinburgh then Masters in Computer Science (Soft Engineering) at the Edinburgh University
+A strong background in .NET (C#), JAVA and HTML/CSS/JS, I've been recently spending most of my time with Scala, JAVA, Couchbase, Elastic Search and Apache Kafka.
 
-The boring stuff
--------------------
+My past projects also included PHP, RavenDB, Oracle, MS SQL, MySQL, MSMQ and more
 
-Focusing on Asp.Net (C#) web development .. key technologies and frameworks - MVC (Razor, webforms view engines), MS SQL, XHTML, XML, CSS, Javascript, JQuery, ruby, SASS. Very much interested in agile dev and TDD.
 
-In the past, I also worked with or played around with Asp.Net WebForms, PHP, Java, MySQL, Python, Oracle, RavenDB and more.
+Are you bored to death yet? No? [check out my LinkedIn](https://www.linkedin.com/in/mirajavora) them ;-)
 
-For more details, check out my LinkedIn profile
-<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-<script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/mirajavora" data-format="inline" data-related="false"></script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"></script><script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/mirajavora" data-format="inline" data-related="false"></script>
 
 otherwise, **feel free to tweet me [@mirajavora](http://twitter.com/mirajavora)**
 
