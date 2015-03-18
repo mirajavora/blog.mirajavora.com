@@ -33,14 +33,30 @@ Carbon hands off the data to whisper back-end, which is a fixed-size file based 
 Finally, there is a web component that renders the graphs based on the metrics.
 
 
-Installing Graphite
+Installing Graphite & NGINX on Ubuntu
 -------------------
 Yes, it's not as straight-forward as pulling down a single package, but it's worth it!
 First, there's an obvious on Python - graphite supports 2.6 and higher.
 
+Luckily, there's an apt-get and most of the dependencies are in repos.
+
+{% highlight bash %}
+
+    apt-get update
+    apt-get install graphite-web graphite-carbon
+
+{% endhighlight %}
+
+These pull down the
+
+{% highlight bash %}
+
+    apt-get install nginx
+
+{% endhighlight %}
 
 
-
+[TODO] - mention the DB
 
 Getting your metrics into the graphing server
 -------------------
