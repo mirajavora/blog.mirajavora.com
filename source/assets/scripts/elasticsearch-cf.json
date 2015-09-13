@@ -1,0 +1,282 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description" : "Creates auto scaling Elastic Search Cluster",
+
+  "Parameters" : {
+    "InstanceType" : {
+      "Description" : "Elastic Search node instance type",
+      "Type" : "String",
+      "Default" : "t2.small",
+      "AllowedValues" : [ "t1.micro", "t2.micro", "t2.small", "t2.medium", "m1.small", "m1.medium", "m1.large",
+        "m1.xlarge", "m2.xlarge", "m2.2xlarge", "m2.4xlarge", "m3.medium", "m3.large", "m3.xlarge", "m3.2xlarge", "c1.medium", "c1.xlarge", "c3.large", "c3.xlarge", "c3.2xlarge",
+        "c3.4xlarge", "c3.8xlarge", "g2.2xlarge", "r3.large", "r3.xlarge", "r3.2xlarge", "r3.4xlarge", "r3.8xlarge", "i2.xlarge", "i2.2xlarge", "i2.4xlarge", "i2.8xlarge",
+        "hi1.4xlarge", "hs1.8xlarge", "cr1.8xlarge", "cc2.8xlarge", "cg1.4xlarge"],
+      "ConstraintDescription" : "must be a valid EC2 instance type."
+    },
+    "InstanceCount" : {
+      "Description" : "Number of instances to start",
+      "Default": "3",
+      "MinValue": "2",
+      "MaxValue": "12",
+      "Type" : "Number"
+    },
+    "KeyName" : {
+      "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instances",
+      "Type" : "AWS::EC2::KeyPair::KeyName",
+      "ConstraintDescription" : "Must be the name of an existing EC2 KeyPair."
+    },
+    "VPCId" : {
+      "Description" : "VPC you are trying launch the instances in",
+      "Type" : "AWS::EC2::VPC::Id",
+      "ConstraintDescription" : "Must be a valid vpc ID"
+    },
+    "SubnetIds" : {
+      "Description" : "Specify subnets where to launch the instances",
+      "Type" : "List<AWS::EC2::Subnet::Id>",
+      "ConstraintDescription" : "Must be a subnet"
+    },
+    "Environment": {
+      "AllowedValues": [
+        "local",
+        "dev",
+        "staging",
+        "prod"
+      ],
+      "ConstraintDescription": "must be a valid environment",
+      "Default": "dev",
+      "Description": "Environment",
+      "Type": "String"
+    },
+    "ServiceName": {
+          "Default": "",
+          "Description": "Service Name",
+          "Type": "String"
+        }
+  },
+
+  "Mappings" : {
+    "AWSInstanceType2Arch": {
+      "t1.micro": {"Arch": "PV64"},
+      "t2.micro": {"Arch": "HVM64"},
+      "t2.small": {"Arch": "HVM64"},
+      "t2.medium": {"Arch": "HVM64"},
+      "m1.small": {"Arch": "PV64"},
+      "m1.medium": {"Arch": "PV64"},
+      "m1.large": {"Arch": "PV64"},
+      "m1.xlarge": {"Arch": "PV64"},
+      "m2.xlarge": {"Arch": "PV64"},
+      "m2.2xlarge": {"Arch": "PV64"},
+      "m2.4xlarge": {"Arch": "PV64"},
+      "m3.medium": {"Arch": "HVM64"},
+      "m3.large": {"Arch": "HVM64"},
+      "m3.xlarge": {"Arch": "HVM64"},
+      "m3.2xlarge": {"Arch": "HVM64"},
+      "c1.medium": {"Arch": "PV64"},
+      "c1.xlarge": {"Arch": "PV64"},
+      "c3.large": {"Arch": "HVM64"},
+      "c3.xlarge": {"Arch": "HVM64"},
+      "c3.2xlarge": {"Arch": "HVM64"},
+      "c3.4xlarge": {"Arch": "HVM64"},
+      "c3.8xlarge": {"Arch": "HVM64"},
+      "g2.2xlarge": {"Arch": "HVMG2"},
+      "r3.large": {"Arch": "HVM64"},
+      "r3.xlarge": {"Arch": "HVM64"},
+      "r3.2xlarge": {"Arch": "HVM64"},
+      "r3.4xlarge": {"Arch": "HVM64"},
+      "r3.8xlarge": {"Arch": "HVM64"},
+      "i2.xlarge": {"Arch": "HVM64"},
+      "i2.2xlarge": {"Arch": "HVM64"},
+      "i2.4xlarge": {"Arch": "HVM64"},
+      "i2.8xlarge": {"Arch": "HVM64"},
+      "hi1.4xlarge": {"Arch": "HVM64"},
+      "hs1.8xlarge": {"Arch": "HVM64"},
+      "cr1.8xlarge": {"Arch": "HVM64"},
+      "cc2.8xlarge": {"Arch": "HVM64"}
+    },
+    "AWSRegionArch2AMI": {
+      "us-east-1": {
+        "PV64": "ami-50842d38",
+        "HVM64": "ami-08842d60",
+        "HVMG2": "ami-3a329952"
+      },
+      "us-west-2": {
+        "PV64": "ami-af86c69f",
+        "HVM64": "ami-8786c6b7",
+        "HVMG2": "ami-47296a77"
+      },
+      "us-west-1": {
+        "PV64": "ami-c7a8a182",
+        "HVM64": "ami-cfa8a18a",
+        "HVMG2": "ami-331b1376"
+      },
+      "eu-west-1": {
+        "PV64": "ami-aa8f28dd",
+        "HVM64": "ami-748e2903",
+        "HVMG2": "ami-00913777"
+      },
+      "ap-southeast-1": {
+        "PV64": "ami-20e1c572",
+        "HVM64": "ami-d6e1c584",
+        "HVMG2": "ami-fabe9aa8"
+      },
+      "ap-northeast-1": {
+        "PV64": "ami-21072820",
+        "HVM64": "ami-35072834",
+        "HVMG2": "ami-5dd1ff5c"
+      },
+      "ap-southeast-2": {
+        "PV64": "ami-8b4724b1",
+        "HVM64": "ami-fd4724c7",
+        "HVMG2": "ami-e98ae9d3"
+      },
+      "sa-east-1": {
+        "PV64": "ami-9d6cc680",
+        "HVM64": "ami-956cc688",
+        "HVMG2": "NOT_SUPPORTED"
+      },
+      "cn-north-1": {
+        "PV64": "ami-a857c591",
+        "HVM64": "ami-ac57c595",
+        "HVMG2": "NOT_SUPPORTED"
+      },
+      "eu-central-1": {
+        "PV64": "ami-a03503bd",
+        "HVM64": "ami-b43503a9",
+        "HVMG2": "ami-b03503ad"
+      }
+    }
+  },
+
+  "Resources" : {
+    "RootRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version" : "2012-10-17",
+          "Statement": [ {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": [ "ec2.amazonaws.com" ]
+            },
+            "Action": [ "sts:AssumeRole" ]
+          } ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [{
+                "Effect":"Allow",
+                "Action":"iam:PassRole",
+                "Resource":"*"
+              },
+                {
+                  "Effect":"Allow",
+                  "Action":"iam:ListInstanceProfiles",
+                  "Resource":"*"
+                },
+                {
+                  "Effect":"Allow",
+                  "Action":"ec2:*",
+                  "Resource":"*"
+                }]
+            },
+            "PolicyName": "allowEC2"
+          }
+        ]
+      }
+    },
+    "ElasticSearchProfile": {
+      "Properties": {
+        "Path": "/",
+        "Roles": [
+          {
+            "Ref": "RootRole"
+          }
+        ]
+      },
+      "Type": "AWS::IAM::InstanceProfile"
+    },
+    "ElasticSearchSecurityGroup": {
+      "Metadata" : { "Note" : "Replace with your own IP address/range" },
+      "Properties": {
+        "GroupDescription": "Security group allows access to ES from specific IP range",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "22",
+            "IpProtocol": "tcp",
+            "ToPort": "22"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "9200",
+            "IpProtocol": "tcp",
+            "ToPort": "9200"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "9300",
+            "IpProtocol": "tcp",
+            "ToPort": "9300"
+          }
+        ],
+        "VpcId": { "Ref": "VPCId"}
+      },
+      "Type": "AWS::EC2::SecurityGroup"
+    },
+    "ServerGroup": {
+      "Type": "AWS::AutoScaling::AutoScalingGroup",
+      "Properties": {
+        "AvailabilityZones": {
+          "Fn::GetAZs": ""
+        },
+        "VPCZoneIdentifier" : { "Ref": "SubnetIds"},
+        "LaunchConfigurationName": {
+          "Ref": "ESLaunchConfig"
+        },
+        "MinSize": "2",
+        "MaxSize": "12",
+        "DesiredCapacity": {
+          "Ref": "InstanceCount"
+        },
+        "Tags": [
+          { "Key": "Name", "Value": { "Ref": "AWS::StackName" }, "PropagateAtLaunch": true },
+          { "Key": "Environment", "Value": { "Ref": "Environment" }, "PropagateAtLaunch": true },
+          { "Key": "Owner",  "Value": "Owner", "PropagateAtLaunch": true },
+          { "Key": "Service", "Value": { "Ref": "ServiceName" }, "PropagateAtLaunch": true }
+        ]
+      }
+    },
+    "ESLaunchConfig": {
+      "Type": "AWS::AutoScaling::LaunchConfiguration",
+      "Properties": {
+        "InstanceType": {"Ref": "InstanceType"},
+        "IamInstanceProfile": {
+          "Ref": "ElasticSearchProfile"
+        },
+        "SecurityGroups": [
+          { "Ref": "ElasticSearchSecurityGroup" }
+        ],
+        "KeyName": {"Ref": "KeyName"},
+        "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
+          { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "InstanceType" }, "Arch" ] } ] },
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "VolumeSize": "100",
+              "VolumeType" : "gp2"
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "Outputs" : {
+
+  }
+}
