@@ -36,6 +36,10 @@
       "Type" : "List<AWS::EC2::Subnet::Id>",
       "ConstraintDescription" : "Must be a subnet"
     },
+    "SubnetAZ": {
+      "Description": "Availability Zones of the Subnet",
+      "Type": "List<AWS::EC2::AvailabilityZone::Name>"
+    },
     "Environment": {
       "AllowedValues": [
         "local",
@@ -96,54 +100,34 @@
     },
     "AWSRegionArch2AMI": {
       "us-east-1": {
-        "PV64": "ami-50842d38",
-        "HVM64": "ami-08842d60",
-        "HVMG2": "ami-3a329952"
+        "HVM64": "ami-21630d44"
       },
       "us-west-2": {
-        "PV64": "ami-af86c69f",
-        "HVM64": "ami-8786c6b7",
-        "HVMG2": "ami-47296a77"
+        "HVM64": "ami-cf3c21ff"
       },
       "us-west-1": {
-        "PV64": "ami-c7a8a182",
-        "HVM64": "ami-cfa8a18a",
-        "HVMG2": "ami-331b1376"
+        "HVM64": "ami-c52dd781"
       },
       "eu-west-1": {
-        "PV64": "ami-aa8f28dd",
-        "HVM64": "ami-748e2903",
-        "HVMG2": "ami-00913777"
+        "HVM64": "ami-9d2f0fea"
       },
       "ap-southeast-1": {
-        "PV64": "ami-20e1c572",
-        "HVM64": "ami-d6e1c584",
-        "HVMG2": "ami-fabe9aa8"
+        "HVM64": "ami-96c2c8c4"
       },
       "ap-northeast-1": {
-        "PV64": "ami-21072820",
-        "HVM64": "ami-35072834",
-        "HVMG2": "ami-5dd1ff5c"
+        "HVM64": "ami-0841ca08"
       },
       "ap-southeast-2": {
-        "PV64": "ami-8b4724b1",
-        "HVM64": "ami-fd4724c7",
-        "HVMG2": "ami-e98ae9d3"
+        "HVM64": "ami-f32b64c9"
       },
       "sa-east-1": {
-        "PV64": "ami-9d6cc680",
-        "HVM64": "ami-956cc688",
-        "HVMG2": "NOT_SUPPORTED"
+        "HVM64": "ami-4ddb4e50"
       },
       "cn-north-1": {
-        "PV64": "ami-a857c591",
-        "HVM64": "ami-ac57c595",
-        "HVMG2": "NOT_SUPPORTED"
+        "HVM64": "ami-18980421"
       },
       "eu-central-1": {
-        "PV64": "ami-a03503bd",
-        "HVM64": "ami-b43503a9",
-        "HVMG2": "ami-b03503ad"
+        "HVM64": "ami-6265657f"
       }
     }
   },
@@ -230,9 +214,7 @@
     "ServerGroup": {
       "Type": "AWS::AutoScaling::AutoScalingGroup",
       "Properties": {
-        "AvailabilityZones": {
-          "Fn::GetAZs": ""
-        },
+        "AvailabilityZones": { "Ref" : "SubnetAZ" },
         "VPCZoneIdentifier" : { "Ref": "SubnetIds"},
         "LaunchConfigurationName": {
           "Ref": "ESLaunchConfig"
