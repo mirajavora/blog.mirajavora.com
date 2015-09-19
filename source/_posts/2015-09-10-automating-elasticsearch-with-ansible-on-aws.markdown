@@ -124,7 +124,7 @@ Of course, if you are running deployments on multiple machines this can be cumbe
 You should then open *roles\ansible-elasticsearch\vars\main.yml* and edit variables accordingly.
 
 Make sure you give ES enough HEAP_SIZE - the default 1GB is almost never enough for any use-case and pick your versions.
-You can specifying any plugins you want to install along the way. The sample below includes both the kopf and AWS plugins mentioned above.
+You can also specify any plugins you want to install along the way. The sample below includes both the kopf and AWS plugins mentioned above.
 
 {% highlight json %}
 
