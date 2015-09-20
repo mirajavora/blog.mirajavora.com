@@ -11,7 +11,7 @@ A strong background in .NET (C#), JAVA and HTML/CSS/JS, I've been recently spend
 My past projects also included PHP, RavenDB, Oracle, MS SQL, MySQL, MSMQ and more
 
 
-Are you bored to death yet? No? [check out my LinkedIn](https://www.linkedin.com/in/mirajavora) them ;-)
+Are you bored to death yet? No? [check out my LinkedIn](https://www.linkedin.com/in/mirajavora) then ;-)
 
 <script src="//platform.linkedin.com/in.js" type="text/javascript"></script><script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/mirajavora" data-format="inline" data-related="false"></script>
 
