@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reporting on Sendgrid events using Webhooks"
-date: 2015-09-20 21:12:30 +0000
+date: 2015-09-27 21:12:30 +0000
 comments: true
 image: /images/posts/sendgrid/sendgrid-stats-small.png
 summary: "Over the years, I've used several providers and techniques to send out email. I used IIS, AWS and few key email providers. The bottom line is, the more email you send, the more you want to rely on a 3rd party to take that burden from your hands."
@@ -25,7 +25,7 @@ It has a concept of email categories where you can group your communication type
 It builds reports based on geo location of the users, email ISP and device type. However, what if you want a little bit more?
 
 
-Building a more detailed reporting
+Building more detailed reporting
 -------------------
 One of the things we always missed was URL click reports - looking at what each user has clicked. We also pass specific meta-data along with the message that we would need to report on - things such as user country for the user or their specific id.
 
