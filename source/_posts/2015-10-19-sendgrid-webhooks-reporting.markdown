@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reporting on Sendgrid events using Webhooks"
-date: 2015-10-19 22:12:30 +0000
+date: 2015-10-19 10:12:30 pm
 comments: true
 image: /images/posts/sendgrid/sendgrid-stats-small.png
 summary: "Over the years, I've used several providers and techniques to send out email. I used IIS, AWS and few key email providers. The bottom line is, the more email you send, the more you want to rely on a 3rd party to take that burden from your hands."
