@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reporting on Sendgrid events using Webhooks"
-date: 2015-09-27 21:12:30 +0000
+date: 2015-10-19 22:12:30 +0000
 comments: true
 image: /images/posts/sendgrid/sendgrid-stats-small.png
 summary: "Over the years, I've used several providers and techniques to send out email. I used IIS, AWS and few key email providers. The bottom line is, the more email you send, the more you want to rely on a 3rd party to take that burden from your hands."
@@ -43,7 +43,8 @@ Elastic Search with Kibana seemed like an ideal candidate for storage for the us
 It also gives us advantage when curating the data - we can index based on months and remove indexes as they become obsolete. On top of it, utilising existing tools and parts of infx,
 it let us deliver this end-to-end with less than 2k lines of code including tests and cloudformation scripts for AWS.
 
-If you don't need to expose the callback data within the organisation as a stream, you can simplify the architecture by going directly from the endpoint to Elastic Search.
+If you don't need to expose the callback data within the organisation as a stream, you can simplify the architecture by going directly from the endpoint to Elastic Search. However, you would
+miss the opportunity for your entire organisation to benefit from the data-set!
 
 
 Aggregate your callbacks in Elastic Search
