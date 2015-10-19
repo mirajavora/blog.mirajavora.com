@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Open Sourcing Sendgrid Webhooks Library"
-date: 2015-09-31 10:12:30 +0000
+date: 2015-10-09 13:12:30 +0000
 comments: true
 image: /images/posts/sendgrid/sendgrid-stats-small.png
 summary: ""
@@ -31,19 +31,30 @@ Sendgrid tends to aggregate the callbacks into batches so you usually receive mo
 [TODO code snippet]
 
 ### Custom Serialisation
+Since we're dealing with JSON - I pulled in a single dependency on the project. It is the Newtonsoft.JSON library.
+ServiceStack.Text is my preferred option with a lower footprint and marginally higher performance, however, in this instance Newtonsoft.JSON is the one that is used more widely.
+
+A sample that you may get from Sendgrid
+
+[TODO insert sendgrid code sample]
+
+The custom serialisation used the type attribute of each event to determine the underlying event type.
+Each event was based of the same base X.
+
+[TODO insert custom parse event]
+
+I have also added couple of custom serialisers that deal with custom date conversion or csv to array. That way you have access to a proper DateTime date and List<String> of categories.
+
+[TODO insert custom parsers]
 
 
-
-
-
-
-
-### Data flows
+Check out the code at [TODO LINK]
 
 
 ### Contributions
-
+A surprising number of people started using the code and we've had few contributions already. Thanks to Andy McCready and [TODO]
 
 Joining list of libraries on Sendgrid page
 -------------------
-We went ahead an
+And finally, I got in touch with Sendgrid if they wanted to add our community driven library for the webhooks on their list of libraries they suggest to devs.
+They did! So now you can easily find that in the list!
