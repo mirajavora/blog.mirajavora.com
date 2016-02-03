@@ -12,7 +12,7 @@ I while back I blogged about how to approach [error logging in production multi-
 Later on, I looked at a way to [deal with application level metrics using statsd](/logging-custom-metrics-with-statsd/).
 
 One last piece of the puzzle is monitoring of the health of the nodes themselves. This typically includes CPU and Memory usage, disk space monitoring and application health monitoring.
-Diamond collector is great
+Diamond collectors are great exactly for that.
 <!--more-->
 
 
@@ -53,12 +53,53 @@ In most cases you are unlikely to use them all, but here are some that I would l
 I prefer to have them running as part of my [ansible scripts](http://docs.ansible.com/ansible/intro_getting_started.html).
 
 
-#### Initial Diamond via ansible
+#### Install Diamond via ansible
+Depening on how your code is structured, I tend to add a role that takes care of installing all the dependencies, adding the configuration and any custom collectors I may have.
 
+{% gist b85b0606591bbc8ad90e diamond.yml %}
 
+Your dir structure of the role should also look something along these lines
+
+{% highlight bash %}
+
+- tasks
+  - main.yml
+- files
+  - collectors
+    - SomeCustomCollector1.py
+    - SomeCustomCollector2.py
+- templates
+   - diamond.conf
+
+{% endhighlight %}
 
 #### Configuration
+The role relies on diamond configuration file. The entire file can be found [here](https://gist.github.com/mirajavora/9f6b5cd402c5c6f27df5), but I can pick out few key properties to watch out for.
 
+{% highlight bash %}
+
+# Specify that metrics are sent via graphite handler
+handlers = diamond.handler.graphite.GraphiteHandler
+
+....
+
+# Interval when the metrics are collected and sent off
+collectors_reload_interval = 3600
+
+....
+
+# Graphite server host
+host = {{ graphite_host }}
+
+# Port to send metrics to
+port = 2003
+
+...
+# Specify path prefix or suffix
+path_prefix = your-metrics
+path_suffix = suff
+
+{% endhighlight %}
 
 
 Building custom collectors
