@@ -4,14 +4,40 @@ title: "Projects"
 comments: true
 ---
 
-Skyscanner User Services
+Skyscanner State Machine
 -------------------
+
+Big data and predictive analytics @ Skyscanner.
+
 
 Skyscanner Price Alerts
 -------------------
 
+<img src="/images/projects/skyscanner-pricealerts.png" class="post-image-right" alt="Skyscanner Price Alerts" />
+
+Price or Fare alerts offer functionality where a user interested in route and day subscribes to alerts when price changes. A feature that was used quickly by millions of people every day required mutliple components and services.
+
+It delivers millions of alerts via email or push every day.
+
+
 Skyscanner Recent Searches
 -------------------
+
+<img src="/images/projects/skyscanner-recentsearches.png" class="post-image-right" alt="Skyscanner Recent Searches" />
+
+The ability to keep your searches across multiple devices was the key offering in the recent searches project. As well as handling different search types, it was built to handle extremely large volumes of data and scale to be available in all regions of the globe efficiently.
+
+The recent seraches became one of the key offerings for user login and registration.
+
+
+Skyscanner Authentication
+-------------------
+
+<img src="/images/projects/skyscanner-auth.png" class="post-image-right" alt="Skyscanner Login and Registration" />
+
+
+I've been heavily involved majority of the user-driven projects @ Skyscanner. The key projects and services included login and registration and were touching all levels of the stack and brand new services that were created to deliver this experience.
+Over the duration of few months we delivered native and social auth without 3rd party tools that included provides such as Facebook, Google, LinkedIn, Weibo or VKontakte.
 
 
 Adidas Golden Boot Challenge
