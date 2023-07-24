@@ -1,3 +1,81 @@
 baseURL: 'http://blog.mirajavora.com/'
 languageCode: 'en-us'
 title: 'Mira Javora Blog'
+
+permalinks:
+  page:
+    blog: /:slug/
+
+
+paginate: '10'
+theme: mainroad
+disqusShortname: ""
+googleAnalytics: ''
+Author:
+  name: John Doe
+  bio: >-
+    John Doe's true identity is unknown. Maybe he is a successful blogger or
+    writer. Nobody knows it.
+  avatar: img/avatar.png
+Params:
+  description: John Doe's Personal blog about everything
+  copyright: John Doe
+  opengraph: true
+  schema: true
+  twitter_cards: true
+  readmore: false
+  authorbox: true
+  toc: true
+  pager: true
+  post_meta:
+    - author
+    - date
+    - categories
+    - translations
+  mainSections:
+    - blog
+    - projects
+    - talks
+    - about-me
+  dateformat: '2006-01-02'
+  mathjax: true
+  mathjaxPath: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js'
+  mathjaxConfig: TeX-AMS-MML_HTMLorMML
+  googleFontsLink: 'https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700'
+  customCSS:
+    - css/custom.css
+  customJS:
+    - js/custom.js
+  subtitle: ''
+  highlightColor: ''
+  style:
+    vars:
+      highlightColor: '#e22d30'
+      fontFamilyPrimary: '''Open Sans'', Helvetica, Arial, sans-serif'
+      fontFamilySecondary: >-
+        SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
+        New', monospace
+  logo:
+    image: img/placeholder.png
+    title: Mainroad
+    subtitle: Just another site
+  thumbnail:
+    visibility:
+      - list
+      - post
+  sidebar:
+    home: right
+    list: left
+    single: false
+    widgets:
+      - search
+      - recent
+      - categories
+      - taglist
+      - social
+      - languages
+  widgets:
+    recent_num: 5
+    categories_counter: false
+    tags_counter: false
+
