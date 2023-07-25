@@ -12,11 +12,25 @@ theme: mainroad
 disqusShortname: ""
 googleAnalytics: ''
 Author:
-  name: John Doe
+  name: Mira Javora
   bio: >-
     John Doe's true identity is unknown. Maybe he is a successful blogger or
     writer. Nobody knows it.
   avatar: img/avatar.png
+menu:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Projects
+      pageRef: /projects
+      weight: 20
+    - name: Talks
+      pageRef: /talks
+      weight: 30
+    - name: About me
+      pageRef: /about-me
+      weight: 40
 Params:
   description: John Doe's Personal blog about everything
   copyright: John Doe
@@ -32,11 +46,6 @@ Params:
     - date
     - categories
     - translations
-  mainSections:
-    - blog
-    - projects
-    - talks
-    - about-me
   dateformat: '2006-01-02'
   mathjax: true
   mathjaxPath: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js'
@@ -66,7 +75,7 @@ Params:
   sidebar:
     home: right
     list: left
-    single: false
+    single: right
     widgets:
       - search
       - recent
