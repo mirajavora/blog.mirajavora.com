@@ -65,13 +65,10 @@ Params:
         SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
         New', monospace
   logo:
-    image: img/placeholder.png
-    title: Mainroad
-    subtitle: Just another site
+    title: Mira Javora Blog
   thumbnail:
     visibility:
       - list
-      - post
   sidebar:
     home: right
     list: right
