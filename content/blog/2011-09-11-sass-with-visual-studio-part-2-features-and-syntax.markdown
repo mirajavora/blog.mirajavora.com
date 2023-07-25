@@ -4,7 +4,7 @@ title: "SASS with Visual Studio Part 2 Features and Syntax"
 date: 2011-09-11 23:00:00 +0000
 comments: true
 summary: "SASS is a super-set of CSS, that means, any existing CSS that you already wrote will just work. What we usually do, is paste any legacy CSS (if any) to our SASS file and take it from there. I’ve posted few examples of the syntax below. In my next post, I will focus on the real-world usage of SASS."
-categories: [SASS, CSS, Visual Studio]
+tags: [SASS, CSS, Visual Studio]
 ---
 
 SASS is a super-set of CSS, that means, any existing CSS that you already wrote will just work. What we usually do, is paste any legacy CSS (if any) to our SASS file and take it from there. I’ve posted few examples of the syntax below. In my next post, I will focus on the real-world usage of SASS.

@@ -3,9 +3,9 @@ layout: post
 title: "Open Sourcing Sendgrid Webhooks Library"
 date: 2016-05-21 13:12:30 +0000
 comments: true
-image: /images/posts/webhooks/github.png
+thumbnail: /images/posts/webhooks/github.png
 summary: "It's been a while since I wrote an open-source contribution. A while back, a mini-project I was involved required parsing of Sendgrid Webhooks in C#. As it turned out, there wasn't much around and Sendgrid didn't have an official library.  Although at the time I pretty much stopped writing any C#, it was a good opportunity for an open source project."
-categories: [sendgrid, metrics, opensource, github, csharp]
+tags: [sendgrid, metrics, opensource, github, csharp]
 ---
 
 It's been a while since I wrote an open-source contribution. A while back, a mini-project as I was involved required parsing of Sendgrid Webhooks in C#.

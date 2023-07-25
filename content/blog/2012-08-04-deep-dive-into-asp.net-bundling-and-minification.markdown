@@ -4,7 +4,7 @@ title: "Deep Dive into ASP.NET Bundling and Minification"
 date: 2012-08-04 21:50:00 +0000
 comments: true
 summary: "In the previous post, I went on about how to use System.Web.Optimization library to minimize your page load times. However, the new library offers quite a lot of extensibility and even if you don’t want to use the default minification, you can still use the framework."
-categories: [C#, MVC, Bundling, CSS, Javascript, Visual Studio]
+tags: [C#, MVC, Bundling, CSS, Javascript, Visual Studio]
 ---
 
 In the previous post, I went on about how to use System.Web.Optimization library to minimize your page load times. However, the new library offers quite a lot of extensibility and even if you don’t want to use the default minification, you can still use the framework.

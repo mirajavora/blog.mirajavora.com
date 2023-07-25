@@ -3,9 +3,9 @@ layout: post
 title: "Render Email Templates Using Razor Engine"
 date: 2012-10-08 08:22:00 +0000
 comments: true
-image: /images/posts/razor/EmailTemplate_thumb.png
+thumbnail: /images/posts/razor/EmailTemplate_thumb.png
 summary: "A larger web projects would typically consist not only of front end web project, but would include additional class libraries and offload some of the heavy processing work to service or console apps. The common problem is then how do you update the front-end and signal the site that some work has been completed."
-categories: [C#, Razor, Asp.Net, Visual Studio]
+tags: [C#, Razor, Asp.Net, Visual Studio]
 ---
 
 Sooner of later, there comes a point you will be asked to implement email templates. Tools such as Campaign Monitor are useful, but they are not cost-effective when you reach a larger number of users and you have in-house skills to create an email system.

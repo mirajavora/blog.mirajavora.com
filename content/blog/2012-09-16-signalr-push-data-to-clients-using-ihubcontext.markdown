@@ -4,7 +4,7 @@ title: "SignalR – Push Data To Clients Using IHubContext"
 date: 2012-09-16 12:37:00 +0000
 comments: true
 summary: "The Clients dynamic property of the Hub gives you access to all clients connected to the hub within the hub class. However, what if you would like to push data to the clients from outside of the Hub class. One of the most common scenarios is when you want to push data to the clients from an admin system in your back-end."
-categories: [C#, SignalR, Asp.Net, Visual Studio]
+tags: [C#, SignalR, Asp.Net, Visual Studio]
 ---
 
 *This article is a second contribution to the series dedicated to SignalR. My previous article focused on introduction and basics of SignalR.*

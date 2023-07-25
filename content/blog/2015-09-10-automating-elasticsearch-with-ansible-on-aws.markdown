@@ -3,9 +3,9 @@ layout: post
 title: "Automating Elastic Search deployments with Ansible on AWS"
 date: 2015-09-18 09:12:30 +0000
 comments: true
-image: /images/posts/ansible/ansible-logo.png
+thumbnail: /images/posts/ansible/ansible-logo.png
 summary: "There is so much to love about Elastic Search. If you, like me, end up creating more than one cluster, you start to think about automating the task whole task including infrastructure. Cloudformation and ansible scripts can make this tedious job super simple."
-categories: [ansible, elasticsearch, deployment, ubuntu, aws]
+tags: [ansible, elasticsearch, deployment, ubuntu, aws]
 ---
 
 There is so much to love about Elastic Search. If you, like me, end up creating more than one cluster, you start to think about automating the task whole task including infrastructure.

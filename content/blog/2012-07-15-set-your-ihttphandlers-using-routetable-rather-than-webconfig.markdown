@@ -4,7 +4,7 @@ title: "Set your IHttpHandlers using RouteTable rather than web.config"
 date: 2012-07-15 09:46:00 +0000
 comments: true
 summary: "If for whatever reason you use IHttpHandlers in your MVC project, it may be that you are still using web.config to set the path to the handlers. This can get tricky and easy to miss, especially if you move from cassini dev to IIS7 live. There is however a better, neater way to declare paths to your handers."
-categories: [C#, MVC, ASP.NET, Visual Studio]
+tags: [C#, MVC, ASP.NET, Visual Studio]
 ---
 
 If for whatever reason you use IHttpHandlers in your MVC project, it may be that you are still using web.config to set the path to the handlers. This can get tricky and easy to miss, especially if you move from cassini dev to IIS7 live.

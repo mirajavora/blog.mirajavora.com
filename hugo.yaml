@@ -74,7 +74,7 @@ Params:
       - post
   sidebar:
     home: right
-    list: left
+    list: right
     single: right
     widgets:
       - search

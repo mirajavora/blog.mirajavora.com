@@ -3,9 +3,9 @@ layout: post
 title: "Logstash and GrayLog2 - Scaling your Logging"
 date: 2015-02-21 21:52:30 +0000
 comments: true
-image: /images/posts/logstash/logstash.png
+thumbnail: /images/posts/logstash/logstash.png
 summary: "As you scale and increase the amount of boxes and systems that you manage visibility and centralised logging becomes crucial. Logstash and Graylog2 are the perfect combo to tackle this problem. If you're interested in logging at scale, read on ;-)"
-categories: [Logging, Log4Net, Graylog2, Logstash, Elasticsearch, Log4j]
+tags: [Logging, Log4Net, Graylog2, Logstash, Elasticsearch, Log4j]
 ---
 
 Logging visibility when scaling

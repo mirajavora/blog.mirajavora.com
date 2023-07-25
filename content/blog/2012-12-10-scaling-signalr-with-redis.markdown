@@ -3,9 +3,9 @@ layout: post
 title: "Scaling SignalR with Redis"
 date: 2012-12-10 21:56:00 +0000
 comments: true
-image: /images/posts/signalr/scaleout_thumb.png
+thumbnail: /images/posts/signalr/scaleout_thumb.png
 summary: "SignalR was built with scalability in mind. Even though you will be able to run a fair number of concurrent connections on a single server instance, there will come a point where a single node will not be able to handle the load."
-categories: [SignalR, Redis, Asp.Net, Visual Studio, C#]
+tags: [SignalR, Redis, Asp.Net, Visual Studio, C#]
 ---
 
 *This is a fifth contribution in a series dedicated to SignalR. The previous article looked at [dependency injection](/signalr-dependency-injection/).*

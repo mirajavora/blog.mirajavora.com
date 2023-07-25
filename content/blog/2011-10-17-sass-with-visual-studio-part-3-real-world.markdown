@@ -4,7 +4,7 @@ title: "SASS with Visual Studio Part 3 Real World"
 date: 2011-10-17 21:19:00 +0000
 comments: true
 summary: "Since I already covered the intro, install, features and syntax of SASS. It’s time to show some real-world application of SASS. If used properly, SASS can really save you time."
-categories: [SASS, CSS, Visual Studio]
+tags: [SASS, CSS, Visual Studio]
 ---
 
 Since I already covered the intro, install, features and syntax of SASS. It’s time to show some real-world application of SASS. If used properly, SASS can really save you time.

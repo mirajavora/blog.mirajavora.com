@@ -3,9 +3,9 @@ layout: post
 title: "NDC Oslo 2013 Top Picks"
 date: 2013-06-16 13:52:04 +0000
 comments: true
-categories: [NDC,Conference]
+tags: [NDC,Conference]
 summary: "I just got back from NDC Oslo. It was a great week filled with some quality speakers and content. It’s very hard to pick what I enjoyed the most, because the overall quality was just so high. Nevertheless, I’m going to attempt it :-) Bear in mind it’s my subjective view and I’m happy if you disagree with me. I will update the post once the videos are up."
-image: /images/posts/ndc/IMG_1079_thumb.jpg
+thumbnail: /images/posts/ndc/IMG_1079_thumb.jpg
 ---
 
 <a href="/images/posts/ndc/IMG_1104_thumb.jpg"><img src="/images/posts/ndc/IMG_1104_thumb.jpg" class="post-image-right" alt="Clean Architecture" /></a>

@@ -3,9 +3,9 @@ layout: post
 title: "Getting Started with ASP.NET Web API"
 date: 2013-01-10 21:56:00 +0000
 comments: true
-image: /images/posts/webapi/blog-webapi_thumb.png
+thumbnail: /images/posts/webapi/blog-webapi_thumb.png
 summary: "There are several options you can go for when deciding what technology you adopt for your RESTful API. In fact, you’ve got lots to chose from."
-categories: [WebAPI, Asp.Net, MVC, C#]
+tags: [WebAPI, Asp.Net, MVC, C#]
 ---
 
 <img src="/images/posts/webapi/blog-webapi_thumb.png" class="post-image-right" />

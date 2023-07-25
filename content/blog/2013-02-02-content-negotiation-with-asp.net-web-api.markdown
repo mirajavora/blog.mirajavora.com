@@ -3,9 +3,9 @@ layout: post
 title: "Content Negotiation with ASP.NET Web API"
 date: 2013-02-02 18:25:00 +0000
 comments: true
-image: /images/posts/webapi/FiddleQR_thumb.png
+thumbnail: /images/posts/webapi/FiddleQR_thumb.png
 summary: "An important part of Web API is resource content negotiation. The HTTP protocol RFC defines content negotiation as the process of selecting the best representation for a given response when there are multiple representations available. In practise the same resource can be represented in a variety of different ways – lets say a contact information resource can be shown in JSON representation, but also in XML or even as a PNG QR code containing the same content."
-categories: [WebAPI, Asp.Net, MVC, C#]
+tags: [WebAPI, Asp.Net, MVC, C#]
 ---
 
 *This is a second post in the series all about ASP.NET Web API. The first post looked at [getting started with the Web API](http://blog.mirajavora.com/getting-started-with-asp.net-web-api). You can find the [source code on Github](https://github.com/mirajavora/WebAPISample).*

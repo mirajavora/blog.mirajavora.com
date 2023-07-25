@@ -3,9 +3,9 @@ layout: post
 title: "Monitor System Metrics using Diamond Collector"
 date: 2016-02-02 10:12:30 pm
 comments: true
-image: /images/posts/diamond/diamond.png
+thumbnail: /images/posts/diamond/diamond.png
 summary: "If you're looking for a tool to collect and push system level metrics into graphite, Diamond should be your first port of call.  It includes a huge range of various collectors that lets you monitor anything from cpu, memory and disk space to performance of elastic search or haproxy."
-categories: [diamond, metrics, graphite, grafana, python, statsd]
+tags: [diamond, metrics, graphite, grafana, python, statsd]
 ---
 
 I while back I blogged about how to approach [error logging in production multi-node environments](/scaling-logging-logstash-and-graylog2/) so that you stay sane.

@@ -3,9 +3,9 @@ layout: post
 title: "Octopress - An awesome blogging framework"
 date: 2014-11-23 17:52:30 +0000
 comments: true
-image: /images/posts/octopress/logo.jpeg
+thumbnail: /images/posts/octopress/logo.jpeg
 summary: "I've been looking to re-launch my blog recently and be a bit more active in contributing to the community. While doing so, I wanted to change my existing blogging platform as well as hosting."
-categories: [Blog, Octopress, Hosting]
+tags: [Blog, Octopress, Hosting]
 ---
 
 I've been looking to re-launch my blog recently and be a bit more active in contributing to the community. While doing so, I wanted to change my existing blogging platform as well as hosting.
