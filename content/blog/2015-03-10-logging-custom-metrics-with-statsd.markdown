@@ -45,7 +45,7 @@ It has zero dependencies and it's pretty straight-forward.
 
 Add your dependency to mvn or gradle
 
-{{< highlight xml "linenos=table" >}}
+{{< highlight xml "linenos=inline" >}}
 
 MVN
 
@@ -64,7 +64,7 @@ And init the statsd client with the prefix, host of the statD server and the por
 StatsD has a concept of namespaces, where you can group your metrics - that allows for better visualisation and keeps them neat. The choice of the namespace is yours, depending on what suits you. 
 In bigger deployments you might go for something like "application-name.data-centre.box-name.counter-name". 
 
-{{< highlight java "linenos=table" >}}
+{{< highlight java "linenos=inline" >}}
 
     import com.timgroup.statsd.StatsDClient;
     import com.timgroup.statsd.NonBlockingStatsDClient;
@@ -93,7 +93,7 @@ It also has a concept of a flush interval, where the data is sent off to back-en
 Basic counters that are incremented each time you log against the counter. These are reset to 0 at flush.
 You can also set a sampling interval to tell StatsD you're only sending part of the data-set.
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
     your.namespace.counter:1|c
 {{< / highlight >}}
 
@@ -102,7 +102,7 @@ You can also set a sampling interval to tell StatsD you're only sending part of 
 These are great for monitoring response times of any kind. You tell statsD how long an action took.
 It then automatically works out percentiles, average (mean), standard deviation, sum, and min/max. Really awesome.
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
     your.namespace.response_time:300|ms
 {{< / highlight >}}
 
@@ -121,7 +121,7 @@ Logging metrics using the JVM client
 Using the  [JAVA implementation of the StatsD client](https://github.com/tim-group/java-statsd-client) is then pretty straight-forward.
 
 
-{{< highlight java "linenos=table" >}}
+{{< highlight java "linenos=inline" >}}
 
     import com.timgroup.statsd.NonBlockingStatsDClient;
     import com.timgroup.statsd.StatsDClient;
@@ -171,7 +171,7 @@ Using the  [JAVA implementation of the StatsD client](https://github.com/tim-gro
 
 you can then also consider helper methods using runnable and callable to wrap timings around the methods
 
-{{< highlight java "linenos=table" >}}
+{{< highlight java "linenos=inline" >}}
 
 
         @Override

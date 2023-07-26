@@ -23,7 +23,7 @@ The easiest way to integrate 51Degrees is by adding a nuget package. The package
 
 If you run .NET 4, the dll automatically registers its own **MobileCapabilitiesProvider** (HttpCapabilitiesBase.BrowserCapabilitiesProvider) using [PreApplicationStartMethod](http://msdn.microsoft.com/en-us/library/system.web.preapplicationstartmethodattribute.aspx) attribute and registers the RedirectModule. If you are on 2.0 or 3.5, you will need to register the detection module yourself in your web.config.
 
-{{< highlight xml "linenos=table" >}}
+{{< highlight xml "linenos=inline" >}}
 <httpModules>
     <add name="Detector" type="FiftyOne.Foundation.Mobile.Detection.DetectorModule, FiftyOne.Foundation"/>
 </httpModules>
@@ -31,7 +31,7 @@ If you run .NET 4, the dll automatically registers its own **MobileCapabilitiesP
 
 OR
 
-{{< highlight xml "linenos=table" >}}
+{{< highlight xml "linenos=inline" >}}
 <system.webServer>
     <modules>
     <remove name="Detector"/>
@@ -54,7 +54,7 @@ Redirect Your Mobile Traffic
 
 An example of the redirect setting
 
-{{< highlight xml "linenos=table" >}}
+{{< highlight xml "linenos=inline" >}}
 <redirect firstRequestOnly="true" timeout="20" devicesFile="~/App_Data/Devices.dat" mobilePagesRegex="/(Mobile|Tablet)/">
     <locations>
         <location name="tablet" url="~/Tablet/Default.aspx">

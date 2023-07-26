@@ -22,7 +22,7 @@ The Web API comes with [MediaTypeFormatter](http://msdn.microsoft.com/en-us/libr
 
 Our QrMediaFormatter can only be used for writing the type of Contact. Therefore we add logic to the CanWriteType and override the WriteToStreamAsync member.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class QrMediaFormatter : MediaTypeFormatter
 {
     private const string ApiEndpoint = "http://chart.apis.google.com/chart";
@@ -93,7 +93,7 @@ Wire Up Your Custom Media Type Formatter
 
 The **SupportedMediaTypes** property contains a collection of **MediaTypeHeaderValues**. These define which media types the formatter can handle. In our case we are happy just to map the QR formatter to a single type –> image/png. However, it is possible to have the same media formatter handle a variety of MediaTypeHeaderValues. For example image/png and image/jpeg.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public QrMediaFormatter()
 {
     SupportedMediaTypes.Add(new MediaTypeHeaderValue("image/png"));   
@@ -109,7 +109,7 @@ The idea is that the **same resource should not change URI based on representati
 
 The way around it is to map a particular extension to the Media Type Formatter. It means adding an extension and therefore changing the URI, but it means it can be used by clients without specifying the requested content-type. First, you need to make sure your routes support extensions.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 config.Routes.MapHttpRoute(
     name: "IdWithExt",
     routeTemplate: "api/{controller}/{id}.{ext}");
@@ -117,7 +117,7 @@ config.Routes.MapHttpRoute(
 
 Then you need to add UriPathExtensionMapping to the MediaTypeMappings.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public QrMediaFormatter()
 {
     MediaTypeMappings.Add(new UriPathExtensionMapping("png", "image/png"));
@@ -132,7 +132,7 @@ Change the Configuration to Add the QR Formatter
 
 Finally, it is important to wire up all custom media formatters on app startup.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 GlobalConfiguration.Configuration.Formatters.Add(new QrMediaFormatter());
 {{< / highlight >}} 
 

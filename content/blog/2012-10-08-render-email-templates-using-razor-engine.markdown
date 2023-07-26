@@ -38,7 +38,7 @@ Parsing Your Templates
 
 First of all, create a model for your template
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class EmailModelBase
 {
     public string Name { get; set; }
@@ -48,7 +48,7 @@ public class EmailModelBase
 
 You can then read the content of your template and use your model to parse the resulting HTML by calling **Razor.Parse()**
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public static class EmailFactory
 {
      public static string ParseTemplate<T>(T model, string pathToTemplates, EmailType emailType)
@@ -63,7 +63,7 @@ public static class EmailFactory
 
 Editing your HTML Templates becomes a doddle – just use the @Model syntax
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 ... more HTML
 <p align="left" class="article-title">Dear @Model.Name</p>
 ... more HTML
@@ -71,7 +71,7 @@ Editing your HTML Templates becomes a doddle – just use the @Model syntax
 
 If you need to, you can use loops or conditional statements
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 @foreach(var image in Model.Images)
 {
    <td class="w130" width="130" valign="top">

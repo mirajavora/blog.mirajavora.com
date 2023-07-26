@@ -52,7 +52,7 @@ Include a Reference to Your Shared Project
 
 Finally, you should reference the class library into your projects. All you need is a reference to the dll produced when the class library is built. You can then call up any views as if they were present in the solution. The example below assumes you have SharedPartial.cshtml in your ~/View/Shared/ folder in the Example.Common.
 
-{{< highlight html "linenos=table" >}}
+{{< highlight html "linenos=inline" >}}
 ... your view content
 <div class="container">
     @Html.Partial("SharedPartial")

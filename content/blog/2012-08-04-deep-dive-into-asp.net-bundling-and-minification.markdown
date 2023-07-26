@@ -17,7 +17,7 @@ Sometimes, first step is just to bundle the files together without minification.
 
 Unfortunately, there is not a quick flag you can set on the bundle. The good news is, it’s fairly simple. You can create your own transform and pass it to the bundle. Remember to use Bundle instead of StyleBundle or ScriptBundle.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class NonMinifying : IBundleTransform
 {
     private readonly string _contentType;
@@ -46,7 +46,7 @@ public class NonMinifying : IBundleTransform
 {{< / highlight >}}
 
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 //... in your app init
 IBundleTransform cssTramsform = new NonMinifying();
 
@@ -64,7 +64,7 @@ If you don’t like the default minification that comes in with the System.Web.O
 
 All we need to do is write our own custom SquishIt transform. It will iterate through each file in the bundle and process it.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class SquishItCssTransform<T> : IBundleTransform where T : IMinifier<CSSBundle>
 {
     public void Process(BundleContext context, BundleResponse response)
@@ -88,7 +88,7 @@ public class SquishItCssTransform<T> : IBundleTransform where T : IMinifier<CSSB
 {{< / highlight >}}
 
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 ....
 //in your bundling init
 var cssTransform = new SquishItCssTransform<YuiMinifier>();
@@ -104,7 +104,7 @@ CoffeeScript or SASS, no problem!
 
 If you use CoffeeScript for your JavaScript or SASS/LESS for your CSS, the process is pretty much similar. You need to create a new bundle and pass in your custom IBundleTransform. Using CoffeeScript compiler is dead easy.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class JavascriptCoffeeScriptTransform : IBundleTransform
 {
     public void Process(BundleContext context, BundleResponse response)
@@ -132,7 +132,7 @@ public class JavascriptCoffeeScriptTransform : IBundleTransform
 {{< / highlight >}}
 
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 //.. your bundling setup ...
 var coffeeBundleAndMinify = new JavascriptCoffeeScriptTransform();
 var coffeeBundle = new Bundle("~/bundles/coffee", coffeeBundleAndMinify)

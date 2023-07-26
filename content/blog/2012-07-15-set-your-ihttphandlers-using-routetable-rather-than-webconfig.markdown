@@ -18,7 +18,7 @@ Lets assume you have a handler that looks after your file upload. The same handl
 
 First lets create the FileUploadHandlerRoute
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class FileUploadHandlerRoute : IRouteHandler 
 {
     public IHttpHandler GetHttpHandler(RequestContext requestContext)
@@ -34,7 +34,7 @@ public class FileUploadHandlerRoute : IRouteHandler
 
 And then, simple add the handler route to your RouteCollection
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 //..your other routes
  
 routes.Add(

@@ -33,7 +33,7 @@ You can then copy the Release files to your desired directory, for example C:\Re
 
 Once you have your redis server built and the config file in place, you can open up C:\Redis\bin\ folder in command prompt and run:
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 redis-server.exe C:\redis\bin\redis.conf
 {{< / highlight >}} 
 
@@ -43,7 +43,7 @@ The server will start up and give you a heart-beat ever five seconds with the nu
 
 Now that you’ve got the redis server running, you can connect with your clients. To test your redis server, you can connect with a console client. Open up another command prompt, navigate to C:\Redis\bin\ and type in
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 redis-cli -h localhost -p 6379
 {{< / highlight >}} 
 
@@ -60,7 +60,7 @@ Wiring up SignalR and Redis is really, really simple and takes only two steps. F
 
 Then, you could call **UseRedis** extension method on SignalR DependencyResolver to register Redis as your backplane in your global.asax.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 //... your existing code
  
 RouteTable.Routes.MapConnection<DistributedConnection>("echo", "echo/{*operation}");

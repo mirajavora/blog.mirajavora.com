@@ -41,7 +41,7 @@ First, you will need to include SignalR in your project. The quickest way is to 
 
 Creating a new hub then becomes very easy. Simply create a class and inherit from an abstract Hub class.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class ChatHub : Hub
 {
     //your code here ...
@@ -52,7 +52,7 @@ Connecting to the Hub from a web client
 
 In order to connect to the hub, you will need to add couple of Javascript references. Please note that SignalR uses JQuery. Therefore if it’s not included already, you should include it before initialising signalR.
 
-{{< highlight html "linenos=table" >}}
+{{< highlight html "linenos=inline" >}}
 ....
     <script type="text/javascript" src="~/Scripts/jquery.signalR-0.5.3.js"></script>
     <script type="text/javascript" src="~/signalr/hubs"></script>
@@ -62,7 +62,7 @@ In order to connect to the hub, you will need to add couple of Javascript refere
 
 The ~/signalr/hubs endpoint exposes all the available hubs in the solution and lets you access their public methods. You will first need to initiate connection.
 
-{{< highlight js "linenos=table" >}}
+{{< highlight js "linenos=inline" >}}
 $.connection.hub.start()
     .done(function() {
         console.log("Connected!");
@@ -77,7 +77,7 @@ Distributing your messages to the clients
 
 Once you have made a connection to the hub, your client can then call the public methods on the hub and subscribe to the callbacks received from the hub.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class ChatHub : Hub
 {
     private readonly IRepository _repository;
@@ -101,7 +101,7 @@ When you want to distribute messages to your clients, you can do so using the **
 
 Finally, you should register your client callbacks in JS and wire-up the buttons, fields and your preferred rendering template
 
-{{< highlight js "linenos=table" >}}
+{{< highlight js "linenos=inline" >}}
 var chatHub = undefined;
 
 var init = function () {

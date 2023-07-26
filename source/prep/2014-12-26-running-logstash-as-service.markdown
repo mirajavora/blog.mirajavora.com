@@ -61,13 +61,13 @@ This means the existing apps just added a new appender that would log to an UDP 
 
 This made the whole logstash config really simple
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 TODO
 {{< / highlight >}}
 
 Changes to the Log4net appender
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 TODO
 {{< / highlight >}}
 
@@ -83,7 +83,7 @@ it let's you do complex queries on the data and create custom dashboards.
 
 If you have an instance of Graylog2 running somewhere, it's easy to use the gelf output to channel all the incoming logs into Logstash into Graylog2.
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 TODO full logstash config
 
 {{< / highlight >}}

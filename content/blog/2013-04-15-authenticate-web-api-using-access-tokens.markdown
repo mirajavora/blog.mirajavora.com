@@ -24,7 +24,7 @@ The first thing the user needs to do is exchange the user credentials for an acc
 
 In the action below, username and password is captured by the login model and passed down to the authentication service. If the auth service returns a valid user, we can create a short-lived auth token for the user to use. The token is then set in a cookie and returned as part of the response to the user.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 [HttpPost]
 public ActionResult Index(LoginModel model)
 {
@@ -51,7 +51,7 @@ Once you have created your access token, it will be sent to the server every tim
 
 The best way to ensure access token is processed on every request, you can create a custom handler for authentication by inheriting from [DelegatingHandler](http://msdn.microsoft.com/en-gb/library/system.net.http.delegatinghandler.aspx) class.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 {
     var accessToken = request.Headers.GetCookies("token");
@@ -77,7 +77,7 @@ The handler gets the access token from the cookie and attempts to find the user 
 
 Remember to add your AuthenticationHandler to the MessageHandlers in the Web API  GlobalConfiguration
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 ....
 GlobalConfiguration.Configuration.MessageHandlers.Add(
     new AuthenticationHandler(Container.Resolve<IAccessTokenRepository>(),
@@ -90,7 +90,7 @@ Protect API Actions with Authorize Attribute
 
 Once the user gets authenticated and the user roles are stored on the thread’s IPrincipal, you can you use the in-built [Web API Authorize attribute](http://msdn.microsoft.com/en-us/library/system.web.http.authorizeattribute.aspx) to check whether the user is authenticated. You can even specify roles that user needs to be in to perform a specific action.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 [Authorize]
 public override IEnumerable<Contact> Get()
 {

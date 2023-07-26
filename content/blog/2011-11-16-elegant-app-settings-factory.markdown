@@ -13,7 +13,7 @@ Traditionally, settings in ASP.Net apps are stored AppSettings area of the app a
 
 I don’t know how many times I’ve seen this or variations of this.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public static class Settings
 {
     public static string SomeSetting
@@ -49,7 +49,7 @@ The way to get best of both worlds is to have an abstract settings interface, th
 
 First declare the IApplicationSettings interface
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public interface IApplicationSettings
 {
     string TestUrl { get; set; } 
@@ -58,7 +58,7 @@ public interface IApplicationSettings
 
 Create a static class to mirror the settings. Or include the settings that you only need in your views / static context
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public static class Settings
 {
     private static IApplicationSettings _settings;
@@ -77,7 +77,7 @@ public static class Settings
 
 Create the container and register the factory via DictionaryAdapterFactory (in your bootstrap or global.asax etc)
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 ...
  
 WindsorContainer container = new WindsorContainer();
@@ -92,7 +92,7 @@ container.Register(
 
 Remember to instantiate your static settings class with the IApplicationSettings (after you registered the factory)
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 Settings.InitSettings(container.Resolve<IApplicationSettings>());
 {{< / highlight >}}
 

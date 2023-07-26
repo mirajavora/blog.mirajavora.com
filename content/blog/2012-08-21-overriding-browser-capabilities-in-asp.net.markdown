@@ -15,7 +15,7 @@ Override Browser Context
 
 A good example where you want to use override the browser capabilities is when developing mobile views. You may not want to simulate a particular device, you just want to tell ASP.NET that the client is a mobile device and to use the .mobile view.  You can call SetOverridenBrowser extension method and pass in BrowserOverride enum (Mobile/Desktop options).
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public ActionResult Mobile()
 {
     HttpContext.SetOverriddenBrowser(BrowserOverride.Mobile);
@@ -25,7 +25,7 @@ public ActionResult Mobile()
 
 If you want, you can override the browser full UserAgent by calling SetOverridenBrowser extension method on HttpContextBase
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public ActionResult Iphone()
 {
     HttpContext.SetOverriddenBrowser("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7");
@@ -35,7 +35,7 @@ public ActionResult Iphone()
 
 And then, in order the clear the override, simple call the ClearOverridenBrowser extension method
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public ActionResult Clear()
 {
     HttpContext.ClearOverriddenBrowser();
@@ -56,7 +56,7 @@ Create Mobile Switched Filter
 
 The jQuery.Mobile.MVC package comes with the ViewSwitcher razor partial and the ViewSwitcherController. This does more or less exactly what I described above. However, if you are lazy like me, you may want to switch between mobile/desktop views using QueryString rather than controller/actions.  This is useful when you want to just quickly check your mobile views.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class BrowserCapabilitiesSwitcherFilter : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)

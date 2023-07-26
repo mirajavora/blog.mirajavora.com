@@ -15,7 +15,7 @@ The useful stuff – Nested Syntax
 
 If you like tidy CSS syntax, you’ll love this. Not my most favourite, but still worth mentioning. So something like this
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     ul
     {
         margin: 0;
@@ -28,7 +28,7 @@ If you like tidy CSS syntax, you’ll love this. Not my most favourite, but stil
 
 will be transferred into
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     ul { margin: 0; }
     ul li {float: left;}
 {{< / highlight >}}
@@ -41,7 +41,7 @@ SASS lets you create variables and re-use them throughout. These may be plain yo
 
 Declaring SASS variables
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     $primary-color: #ccc;
     $secondary-color: #ebebeb;
     $grid-height: 20;
@@ -53,7 +53,7 @@ Declaring SASS variables
 
 results into
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     a {
       color: #cccccc;
     }
@@ -71,7 +71,7 @@ Really Cool Stuff- Mixins and Inheritance
 
 One of the key features of sass is the ability to declare mixins. These are basically functions that you can declare to run common tasks.  For example, we can declare a function that handles background images for us
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     @mixin background($url, $color:transparent, $repeat:no-repeat, $position:0 0) {
         background: $color url($url) $repeat $position;
     }
@@ -87,7 +87,7 @@ One of the key features of sass is the ability to declare mixins. These are basi
 
 which will transform into
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     div {
       background: transparent url("/some/url") no-repeat 0 0;
     }
@@ -108,7 +108,7 @@ Uber Cool Stuff – Maths, Operations, Loops and conditions
 
 Bring it all together, and you can go wild … quite wild … something like this
 
-{{< highlight css "linenos=table" >}}
+{{< highlight css "linenos=inline" >}}
     $gutterWidth: 20;
     $columns: 12
     $widthForColumns: $totalWidth - ($columns * $gutterWidth);

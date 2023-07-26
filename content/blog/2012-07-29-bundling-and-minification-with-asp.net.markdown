@@ -28,7 +28,7 @@ Luckily for us, the ASP.NET now ships with a new library called System.Web.Optim
 
 It lets you define bundles at application start and pass them to the BundleCollection. Creating a basic new bundle is quite simple. Let’s assume we would like to combine few CSS files
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 protected void Application_Start()
 {
     ... other startup logic
@@ -43,7 +43,7 @@ protected void Application_Start()
 
 You can also create bundles for your JavaScript.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 protected void Application_Start()
 {
     ... other startup logic
@@ -64,7 +64,7 @@ Rendering Helpers
 
 The library also comes with two awesome helpers. When you develop locally, you want to have all the bundling setup, but you don’t want the bundling and minification to happen – it’s much easier to debug. The System.Web.Optimization has two helpers that address exactly that issue.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
     <head>
         ... other content
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
@@ -74,7 +74,7 @@ The library also comes with two awesome helpers. When you develop locally, you w
     
 When you run the debug setting in the compilation element in your web.config as false, the Styles and Scripts helpers will render the bundled files. However, settings debug=”true” will render them unbundled. Pretty cool!
 
-{{< highlight xml "linenos=table" >}}
+{{< highlight xml "linenos=inline" >}}
 <system.web>
     .....
     <compilation debug="false" targetFramework="4.5" />
@@ -84,6 +84,6 @@ When you run the debug setting in the compilation element in your web.config as 
 
 And that’s not everything, the minified files will also have cache busting string attached based on the files in the bundles.
 
-{{< highlight html "linenos=table" >}}
+{{< highlight html "linenos=inline" >}}
 <link href="/Content/themes/base/css?v=UM624qf1uFt8dYtiIV9PCmYhsyeewBIwY4Ob0i8OdW81" rel="stylesheet" type="text/css" />
 {{< / highlight >}}

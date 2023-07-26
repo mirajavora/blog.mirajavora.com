@@ -16,7 +16,7 @@ The Clients dynamic property of the Hub gives you access to all clients connecte
 
 This is where the static **GlobalHost** SignalR class comes to rescue. It gives you access to the HubContext through the IConnectionManager interface.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 var myHub = GlobalHost.ConnectionManager.GetHubContext<FeedHub>();
 var result = myHub.Clients.receiveData(yourData);
 {{< / highlight >}}
@@ -30,7 +30,7 @@ Lets assume, we want to add functionality to our [existing example](/signalr-int
 
 Lets create the hub first. It is actually just a proxy between the JS client and the controller so it could be empty since all methods are called via the Clients dynamic variable.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class FeedHub : Hub
 {
  
@@ -39,7 +39,7 @@ public class FeedHub : Hub
 
 Then, we need a controller that will create and publish the items to the clients via the FeedHub.
 
-{{< highlight csharp "linenos=table" >}}
+{{< highlight csharp "linenos=inline" >}}
 public class ManageController : Controller
 {
     private readonly IRepository _repository;
@@ -86,7 +86,7 @@ public class ManageController : Controller
 
 Finally, we need to wire-up the front-end with Javascript and template file to render the data coming from the server
 
-{{< highlight js "linenos=table" >}}
+{{< highlight js "linenos=inline" >}}
 function Feed() {
     var feedHub = undefined;
  

@@ -83,7 +83,7 @@ Pull it down & get going git@github.com:Traackr/ansible-elasticsearch.git and ad
 ### Your Ansible script
 Your mainl.yml script should look something alo the lines.
 
-{{< highlight json "linenos=table" >}}
+{{< highlight json "linenos=inline" >}}
 
 - name: "Setup the Elastic Search on nodes."
   hosts: elasticsearchnodes
@@ -99,7 +99,7 @@ When you have added the ansible-elasticsearch as a folder in your roles, you sho
 
 I also added cluster name and security group to the inventory vars below. You can also define specific node-names per instance.
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 [aws-es-01]
 ec2-54-88-217-187.compute-1.amazonaws.com
 
@@ -126,7 +126,7 @@ You should then open *roles\ansible-elasticsearch\vars\main.yml* and edit variab
 Make sure you give ES enough HEAP_SIZE - the default 1GB is almost never enough for any use-case and pick your versions.
 You can also specify any plugins you want to install along the way. The sample below includes both the kopf and AWS plugins mentioned above.
 
-{{< highlight json "linenos=table" >}}
+{{< highlight json "linenos=inline" >}}
 
 elasticsearch_user: "ubuntu"
 elasticsearch_group: "ubuntu"
@@ -149,7 +149,7 @@ elasticsearch_service_startonboot: yes
 ### Running the script
 Finally, once you have your vars in place, run the main.yml ansible script (sample above)
 
-{{< highlight bash "linenos=table" >}}
+{{< highlight bash "linenos=inline" >}}
 ansible-playbook --private-key=[path-to-your-private-key] -i aws main.yml
 {{< / highlight >}}
 
