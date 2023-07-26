@@ -23,22 +23,22 @@ The easiest way to integrate 51Degrees is by adding a nuget package. The package
 
 If you run .NET 4, the dll automatically registers its own **MobileCapabilitiesProvider** (HttpCapabilitiesBase.BrowserCapabilitiesProvider) using [PreApplicationStartMethod](http://msdn.microsoft.com/en-us/library/system.web.preapplicationstartmethodattribute.aspx) attribute and registers the RedirectModule. If you are on 2.0 or 3.5, you will need to register the detection module yourself in your web.config.
 
-{% highlight xml %}
+{{< highlight xml "linenos=table" >}}
 <httpModules>
     <add name="Detector" type="FiftyOne.Foundation.Mobile.Detection.DetectorModule, FiftyOne.Foundation"/>
 </httpModules>
-{% endhighlight %} 
+{{< / highlight >}} 
 
 OR
 
-{% highlight xml %}
+{{< highlight xml "linenos=table" >}}
 <system.webServer>
     <modules>
     <remove name="Detector"/>
     <add name="Detector" type="FiftyOne.Foundation.Mobile.Detection.DetectorModule, FiftyOne.Foundation"/>
     </modules>
 </system.webServer>
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Use Detector To Improve Mobile Detection
 -------------------
@@ -54,7 +54,7 @@ Redirect Your Mobile Traffic
 
 An example of the redirect setting
 
-{% highlight xml %}
+{{< highlight xml "linenos=table" >}}
 <redirect firstRequestOnly="true" timeout="20" devicesFile="~/App_Data/Devices.dat" mobilePagesRegex="/(Mobile|Tablet)/">
     <locations>
         <location name="tablet" url="~/Tablet/Default.aspx">
@@ -66,7 +66,7 @@ An example of the redirect setting
         </location>
     </locations>
 </redirect>
-{% endhighlight %} 
+{{< / highlight >}} 
 
 The sample above will catch the first request of the device and redirect it to either /Mobile/Default.aspx or /Tablet/Default.aspx based on the device features. If you are on premium, you can optionally specify your devices file. You can find out more about the redirect settings in the [51Degrees user guide.](http://51degrees.mobi/Support/Documentation/Foundation/UserGuide.aspx)
 

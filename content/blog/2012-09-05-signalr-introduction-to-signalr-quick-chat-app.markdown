@@ -41,28 +41,28 @@ First, you will need to include SignalR in your project. The quickest way is to 
 
 Creating a new hub then becomes very easy. Simply create a class and inherit from an abstract Hub class.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ChatHub : Hub
 {
     //your code here ...
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Connecting to the Hub from a web client
 
 In order to connect to the hub, you will need to add couple of Javascript references. Please note that SignalR uses JQuery. Therefore if it’s not included already, you should include it before initialising signalR.
 
-{% highlight html %}
+{{< highlight html "linenos=table" >}}
 ....
     <script type="text/javascript" src="~/Scripts/jquery.signalR-0.5.3.js"></script>
     <script type="text/javascript" src="~/signalr/hubs"></script>
 ....
-{% endhighlight %}
+{{< / highlight >}}
  
 
 The ~/signalr/hubs endpoint exposes all the available hubs in the solution and lets you access their public methods. You will first need to initiate connection.
 
-{% highlight javascript %}
+{{< highlight js "linenos=table" >}}
 $.connection.hub.start()
     .done(function() {
         console.log("Connected!");
@@ -70,14 +70,14 @@ $.connection.hub.start()
     .fail(function() { 
         console.log("Could not Connect!"); 
     });
-{% endhighlight %}
+{{< / highlight >}}
 
 Distributing your messages to the clients
 -------------------
 
 Once you have made a connection to the hub, your client can then call the public methods on the hub and subscribe to the callbacks received from the hub.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ChatHub : Hub
 {
     private readonly IRepository _repository;
@@ -95,13 +95,13 @@ public class ChatHub : Hub
         Clients.receiveChat(msg);
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 When you want to distribute messages to your clients, you can do so using the **Clients dynamic object**. Any method that you call on Clients will raise a callback on the client. Furthermore, you can get access to the current client call id using **Context.ConnectionId** or Groups dynamic object which looks after groups management. To publish on a specific connection you can you Clients[“gropuName”].method(params) or Clients[Context.ConnectionId].method(params).
 
 Finally, you should register your client callbacks in JS and wire-up the buttons, fields and your preferred rendering template
 
-{% highlight javascript %}
+{{< highlight js "linenos=table" >}}
 var chatHub = undefined;
 
 var init = function () {
@@ -119,7 +119,7 @@ var init = function () {
 var sendMessage = function() {
     chatHub.send($(".chat-message").val());
 };
-{% endhighlight %}
+{{< / highlight >}}
  
 
 And that’s it, simple as that. You can check out the code sample below (it is a part of a bigger project and there is much more to come). Any questions, give me a shout @mirajavora

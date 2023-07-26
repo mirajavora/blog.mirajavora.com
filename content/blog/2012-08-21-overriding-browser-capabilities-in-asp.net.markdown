@@ -15,33 +15,33 @@ Override Browser Context
 
 A good example where you want to use override the browser capabilities is when developing mobile views. You may not want to simulate a particular device, you just want to tell ASP.NET that the client is a mobile device and to use the .mobile view.  You can call SetOverridenBrowser extension method and pass in BrowserOverride enum (Mobile/Desktop options).
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public ActionResult Mobile()
 {
     HttpContext.SetOverriddenBrowser(BrowserOverride.Mobile);
     return RedirectToAction("Index");
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 If you want, you can override the browser full UserAgent by calling SetOverridenBrowser extension method on HttpContextBase
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public ActionResult Iphone()
 {
     HttpContext.SetOverriddenBrowser("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7");
     return RedirectToAction("Index");
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 And then, in order the clear the override, simple call the ClearOverridenBrowser extension method
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public ActionResult Clear()
 {
     HttpContext.ClearOverriddenBrowser();
     return RedirectToAction("Index");
 }
-{% endhighlight %}
+{{< / highlight >}}
  
 
 What is happening under the hood
@@ -56,7 +56,7 @@ Create Mobile Switched Filter
 
 The jQuery.Mobile.MVC package comes with the ViewSwitcher razor partial and the ViewSwitcherController. This does more or less exactly what I described above. However, if you are lazy like me, you may want to switch between mobile/desktop views using QueryString rather than controller/actions.  This is useful when you want to just quickly check your mobile views.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class BrowserCapabilitiesSwitcherFilter : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -78,7 +78,7 @@ public class BrowserCapabilitiesSwitcherFilter : ActionFilterAttribute
         }            
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Simply use it by typing http://yoursite.com/page?switch=Mobile to preview in mobile and then http://yoursite.com/page?switch=Desktop to switch back. For the more adventurous, you can pass in the user agent directly http://yoursite.com/page?switch=UserAgentString
 

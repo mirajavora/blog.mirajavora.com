@@ -48,7 +48,7 @@ In order to get started, you can either select **Web API Project** from Visual S
 
 Create your API endpoint by inheriting from [**ApiController**](http://msdn.microsoft.com/en-us/library/system.web.http.apicontroller(v=vs.108).aspx).
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ContactController : ApiController
 {
         public IEnumerable<Contact> Get()
@@ -76,7 +76,7 @@ public class ContactController : ApiController
             ...
         }
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 The ApiController class uses conventions to map HTTP methods to actions. As long as the **action name starts with the HTTP method name**, it will be mapped correctly. For example, for HTTP DELETE method to remove Contact resource you should name the action DeleteContact or just Delete. However, if you don’t want to follow the pattern, you can also decorate each method with **HttpGet, HttpPut, HttpPost, or HttpDelete**.
 
@@ -89,17 +89,17 @@ Web API gives you access to the raw HTTP response via the [HttpResponseMessage](
 
 For example, when a PUT method is called, HTTP standard dictates that on a successful creation of the resource, the server should respond with 201 Created and Uri of the created resource in the Location header.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 ... validation and creation of the resource
  
 HttpResponseMessage response = Request.CreateResponse<Contact>(HttpStatusCode.Created, resource);
 response.Headers.Location = GetLocation(resource.Id);
 return response;
-{% endhighlight %} 
+{{< / highlight >}} 
 
 In a similar fashion, at any point you can call the [HttpResponseException](http://msdn.microsoft.com/en-us/library/system.web.http.httpresponseexception.aspx) and encapsulate the HttpResponseMessage within it.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public Contact Get(Guid id)
 {
     var entity = _repository.FindById(id);
@@ -110,14 +110,14 @@ public Contact Get(Guid id)
  
     return entity;
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Model Validation and ModelState
 -------------------
 
 One of the awesome features of MVC is the model validation. Web API follows the same pattern and you can use the same annotation to use model validation in Web API. You can use the in-built validators or create your own custom validators. Calling **ModelState.IsValid** in your method will then evaluate the model.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class Contact
 {
     //...other fields
@@ -135,14 +135,14 @@ public HttpResponseMessage Post(Contact contact)
     }
     return Request.CreateResponse(HttpStatusCode.BadRequest);
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Set Up Route To The API Endpoint
 -------------------
 
 Although the routing in Web API follows the same pattern as routing in MVC, it is important to understand they are not the same. You are calling MappHttpRoute on HttpRouteCollection with a routeTemplate.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public static void Register(HttpConfiguration config)
 {
     config.Routes.MapHttpRoute(
@@ -151,7 +151,7 @@ public static void Register(HttpConfiguration config)
         defaults: new { id = RouteParameter.Optional }
     );
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 If you want to read more on Web API routing, this article by [Mike Wasson](http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api) is a good start.
 
@@ -160,10 +160,10 @@ Dependency Injection
 
 You can inject your Web API controllers with your own services using your own IDependencyResolver implementation. For more details, you can check out the code sample (Castle Windsor implementation). The only thing you need to do is set your own DependencyResolver implementation on App Start.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 GlobalConfiguration.Configuration.DependencyResolver =
                      new WindsorDependencyResolver(Container);
-{% endhighlight %} 
+{{< / highlight >}} 
  
 
 Code Example

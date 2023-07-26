@@ -83,7 +83,7 @@ Pull it down & get going git@github.com:Traackr/ansible-elasticsearch.git and ad
 ### Your Ansible script
 Your mainl.yml script should look something alo the lines.
 
-{% highlight json %}
+{{< highlight json "linenos=table" >}}
 
 - name: "Setup the Elastic Search on nodes."
   hosts: elasticsearchnodes
@@ -93,13 +93,13 @@ Your mainl.yml script should look something alo the lines.
   vars_files:
     - roles/ansible-elasticsearch/defaults/main.yml
 
-{% endhighlight %}
+{{< / highlight >}}
 
 When you have added the ansible-elasticsearch as a folder in your roles, you should update your machines based on the boxes you created.
 
 I also added cluster name and security group to the inventory vars below. You can also define specific node-names per instance.
 
-{% highlight text %}
+{{< highlight bash "linenos=table" >}}
 [aws-es-01]
 ec2-54-88-217-187.compute-1.amazonaws.com
 
@@ -116,7 +116,7 @@ aws-es-02
 [elasticsearchnodes:vars]
 elasticsearch_cluster_name=elasticsearch.cluster
 elasticsearch_plugin_aws_ec2_groups=Elastic-Search-ElasticSearchSecurityGroup-1E0LR18NU18JG
-{% endhighlight %}
+{{< / highlight >}}
 
 Of course, if you are running deployments on multiple machines this can be cumbersome. There are scripts that auto-generate inventories based on specific AWS tags - so you can deploy to all instances that have a tag that you've defined at creation time.
 
@@ -126,7 +126,7 @@ You should then open *roles\ansible-elasticsearch\vars\main.yml* and edit variab
 Make sure you give ES enough HEAP_SIZE - the default 1GB is almost never enough for any use-case and pick your versions.
 You can also specify any plugins you want to install along the way. The sample below includes both the kopf and AWS plugins mentioned above.
 
-{% highlight json %}
+{{< highlight json "linenos=table" >}}
 
 elasticsearch_user: "ubuntu"
 elasticsearch_group: "ubuntu"
@@ -143,15 +143,15 @@ elasticsearch_plugins:
 elasticsearch_service_startonboot: yes
 
 
-{% endhighlight %}
+{{< / highlight >}}
 
 
 ### Running the script
 Finally, once you have your vars in place, run the main.yml ansible script (sample above)
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 ansible-playbook --private-key=[path-to-your-private-key] -i aws main.yml
-{% endhighlight %}
+{{< / highlight >}}
 
 This will run the deployment on the machines specified in your inventory. At the end your cluster will be setup!
 

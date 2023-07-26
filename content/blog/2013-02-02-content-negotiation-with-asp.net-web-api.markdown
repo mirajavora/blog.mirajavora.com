@@ -22,7 +22,7 @@ The Web API comes with [MediaTypeFormatter](http://msdn.microsoft.com/en-us/libr
 
 Our QrMediaFormatter can only be used for writing the type of Contact. Therefore we add logic to the CanWriteType and override the WriteToStreamAsync member.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class QrMediaFormatter : MediaTypeFormatter
 {
     private const string ApiEndpoint = "http://chart.apis.google.com/chart";
@@ -84,7 +84,7 @@ public class QrMediaFormatter : MediaTypeFormatter
         return stringBuilder.ToString();
     }
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 The WriteQrStream method simply takes the Contact, builds up a simple string of the contact name and email and sends the string to the Google QR chart generation API. The stream coming from the API is then directly written to the response stream.
 
@@ -93,12 +93,12 @@ Wire Up Your Custom Media Type Formatter
 
 The **SupportedMediaTypes** property contains a collection of **MediaTypeHeaderValues**. These define which media types the formatter can handle. In our case we are happy just to map the QR formatter to a single type –> image/png. However, it is possible to have the same media formatter handle a variety of MediaTypeHeaderValues. For example image/png and image/jpeg.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public QrMediaFormatter()
 {
     SupportedMediaTypes.Add(new MediaTypeHeaderValue("image/png"));   
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Once we have the media type in the SupportedMediaTypes, the client can use the Content-Type request header to request the image representation of the resource. You can try it out in fiddler, accessing the contact resource with **"Content-Type: image/png"** header.
 
@@ -109,21 +109,21 @@ The idea is that the **same resource should not change URI based on representati
 
 The way around it is to map a particular extension to the Media Type Formatter. It means adding an extension and therefore changing the URI, but it means it can be used by clients without specifying the requested content-type. First, you need to make sure your routes support extensions.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 config.Routes.MapHttpRoute(
     name: "IdWithExt",
     routeTemplate: "api/{controller}/{id}.{ext}");
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Then you need to add UriPathExtensionMapping to the MediaTypeMappings.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public QrMediaFormatter()
 {
     MediaTypeMappings.Add(new UriPathExtensionMapping("png", "image/png"));
     SupportedMediaTypes.Add(new MediaTypeHeaderValue("image/png"));   
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Once you have both in place, you should be able to request the resource on /api/contact/a85ad33c-b61f-4503-8d75-861f3701efe3.png URI.
 
@@ -132,9 +132,9 @@ Change the Configuration to Add the QR Formatter
 
 Finally, it is important to wire up all custom media formatters on app startup.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 GlobalConfiguration.Configuration.Formatters.Add(new QrMediaFormatter());
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Code Sample
 -------------------

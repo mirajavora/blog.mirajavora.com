@@ -15,7 +15,7 @@ The useful stuff – Nested Syntax
 
 If you like tidy CSS syntax, you’ll love this. Not my most favourite, but still worth mentioning. So something like this
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     ul
     {
         margin: 0;
@@ -24,14 +24,14 @@ If you like tidy CSS syntax, you’ll love this. Not my most favourite, but stil
             float: left;
         }
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 will be transferred into
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     ul { margin: 0; }
     ul li {float: left;}
-{% endhighlight %}
+{{< / highlight >}}
 
  
 Cool Stuff – Variables
@@ -41,7 +41,7 @@ SASS lets you create variables and re-use them throughout. These may be plain yo
 
 Declaring SASS variables
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     $primary-color: #ccc;
     $secondary-color: #ebebeb;
     $grid-height: 20;
@@ -49,11 +49,11 @@ Declaring SASS variables
     a { color: $primary-color;}
     a:hover { color: $secondary-color;}
     div.test { height: $grid-height + 10 + px;}
-{% endhighlight %}
+{{< / highlight >}}
 
 results into
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     a {
       color: #cccccc;
     }
@@ -63,7 +63,7 @@ results into
     div.test {
       height: 30px;
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Really Cool Stuff- Mixins and Inheritance
@@ -71,7 +71,7 @@ Really Cool Stuff- Mixins and Inheritance
 
 One of the key features of sass is the ability to declare mixins. These are basically functions that you can declare to run common tasks.  For example, we can declare a function that handles background images for us
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     @mixin background($url, $color:transparent, $repeat:no-repeat, $position:0 0) {
         background: $color url($url) $repeat $position;
     }
@@ -83,18 +83,18 @@ One of the key features of sass is the ability to declare mixins. These are basi
     div.second {
         @include background('/some/url', '#ebebeb');
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 which will transform into
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     div {
       background: transparent url("/some/url") no-repeat 0 0;
     }
     div.second {
       background: "#ebebeb" url("/some/url") no-repeat 0 0;
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 The Really, Really Cool Stuff – Compass Libraries
 -------------------
@@ -108,7 +108,7 @@ Uber Cool Stuff – Maths, Operations, Loops and conditions
 
 Bring it all together, and you can go wild … quite wild … something like this
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
     $gutterWidth: 20;
     $columns: 12
     $widthForColumns: $totalWidth - ($columns * $gutterWidth);
@@ -117,7 +117,7 @@ Bring it all together, and you can go wild … quite wild … something like thi
     @for $i from 1 through $columns {
       .container_12 .grid_#{$i} { width:(($columnWidth*$i) + (($gutterWidth*$i)-$gutterWidth))+px; }
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 Related Articles
 -------------------

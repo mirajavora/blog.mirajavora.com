@@ -20,16 +20,16 @@ When it comes to writing your own dependency resolver for SignalR, you have two 
 
 The DefaultDependencyResolver Members
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public virtual object GetService(Type serviceType);
 public virtual IEnumerable<object> GetServices(Type serviceType);
 public virtual void Register(Type serviceType, Func<object> activator);
 public virtual void Register(Type serviceType, IEnumerable<Func<object>> activators);
-{% endhighlight %} 
+{{< / highlight >}} 
 
 All you need to do when extending the DefaultDependencyResolver is to override the GetService and GetServices methods. In the example below, I’m using Castle.Windsor container, but similar pattern can be used with any other DI containers. You can find few existing implementations below.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class SignalrDependencyResolver : DefaultDependencyResolver
 {
     private readonly IKernel _kernel;
@@ -51,11 +51,11 @@ public class SignalrDependencyResolver : DefaultDependencyResolver
         return objects.Concat(base.GetServices(serviceType));
     }
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 In order to wire up your custom DependencyResolver, you need to set the DependencyResolver via GlobalHost.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 protected void Application_Start()
 {
     var container = CreateContainer();    
@@ -69,11 +69,11 @@ protected void Application_Start()
     //further startup code
     //...
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 With the setup above, you can register all your hubs in your container.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class HubsInstaller : IWindsorInstaller
 {
     public void Install(IWindsorContainer container, IConfigurationStore store)
@@ -84,12 +84,12 @@ public class HubsInstaller : IWindsorInstaller
                     x => x.Named(x.Implementation.FullName.ToLower()).LifeStyle.Transient));
     }
 }
-{% endhighlight %} 
+{{< / highlight >}} 
  
 
 Your container will then auto-resolve any services that are already registered.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ChatHub : Hub
 {
     private readonly IRepository _repository;
@@ -101,7 +101,7 @@ public class ChatHub : Hub
  
     //methods ...
 }
-{% endhighlight %} 
+{{< / highlight >}} 
  
 
 Under The Hood Of DefaultDependecyResolver

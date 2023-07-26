@@ -50,20 +50,20 @@ Having used Octopress for few weeks now, the experience has been great. The abil
 
 Installing Octopress is super-easy. The two main dependencies are Ruby and Git, which most devs will have anyway.
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 git clone git://github.com/imathis/octopress.git octopress
 cd octopress
-{% endhighlight %}
+{{< / highlight >}}
 
 You will then need to install couple of other gem dependencies and install octopress - to setup dirs and structure
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 gem install bundler
 rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
 bundle install
 
 rake install
-{% endhighlight %}
+{{< / highlight >}}
 
 Octopress has a concept of templates/layouts and includes which you can include to avoid repetition. You can find them in */source/_layouts* and */source/_includes*
 
@@ -73,14 +73,14 @@ Once you have Octopress up and running, you can start creating posts. There are 
 
 To create a new post, run
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 rake new_post["A new post Title"]
-{% endhighlight %}
+{{< / highlight >}}
 
 This will create a new markdown file in */source/_posts*. Each post contains a set of variables and the actual content.
 You can also add your own on top of the pre-defined.
 
-{% highlight html %}
+{{< highlight html "linenos=table" >}}
 ---
 layout: post
 title: "SASS with Visual Studio Part 1 Introduction"
@@ -92,13 +92,13 @@ image: /images/posts/sass/sass_thumb.jpg
 ---
 
 This is a start of the content ...
-{% endhighlight %}
+{{< / highlight >}}
 
 Once you're happy with the content, you can run another rake task to produce the content. 
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 rake generate
-{% endhighlight %}
+{{< / highlight >}}
 
 The generated files will end up in */public*
 

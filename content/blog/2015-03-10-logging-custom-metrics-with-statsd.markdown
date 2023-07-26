@@ -45,7 +45,7 @@ It has zero dependencies and it's pretty straight-forward.
 
 Add your dependency to mvn or gradle
 
-{% highlight xml %}
+{{< highlight xml "linenos=table" >}}
 
 MVN
 
@@ -58,13 +58,13 @@ MVN
 Gradle
     'com.timgroup:java-statsd-client:3.1.0'
 
-{% endhighlight %}
+{{< / highlight >}}
 
 And init the statsd client with the prefix, host of the statD server and the port. 
 StatsD has a concept of namespaces, where you can group your metrics - that allows for better visualisation and keeps them neat. The choice of the namespace is yours, depending on what suits you. 
 In bigger deployments you might go for something like "application-name.data-centre.box-name.counter-name". 
 
-{% highlight java %}
+{{< highlight java "linenos=table" >}}
 
     import com.timgroup.statsd.StatsDClient;
     import com.timgroup.statsd.NonBlockingStatsDClient;
@@ -79,7 +79,7 @@ In bigger deployments you might go for something like "application-name.data-cen
         .....
     }
     
-{% endhighlight %}
+{{< / highlight >}}
 
 I tend to have a single statsD client within the app as a singleton wrapped by a diagnostics service.
 
@@ -93,18 +93,18 @@ It also has a concept of a flush interval, where the data is sent off to back-en
 Basic counters that are incremented each time you log against the counter. These are reset to 0 at flush.
 You can also set a sampling interval to tell StatsD you're only sending part of the data-set.
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
     your.namespace.counter:1|c
-{% endhighlight %}
+{{< / highlight >}}
 
 
 ### Timers
 These are great for monitoring response times of any kind. You tell statsD how long an action took.
 It then automatically works out percentiles, average (mean), standard deviation, sum, and min/max. Really awesome.
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
     your.namespace.response_time:300|ms
-{% endhighlight %}
+{{< / highlight >}}
 
 ### Gauges
 Gauges are single values that can be incremented or decremented or set to a specific value. Unlike counters, gauges aren't reset to zero at flush time
@@ -121,7 +121,7 @@ Logging metrics using the JVM client
 Using the  [JAVA implementation of the StatsD client](https://github.com/tim-group/java-statsd-client) is then pretty straight-forward.
 
 
-{% highlight java %}
+{{< highlight java "linenos=table" >}}
 
     import com.timgroup.statsd.NonBlockingStatsDClient;
     import com.timgroup.statsd.StatsDClient;
@@ -167,11 +167,11 @@ Using the  [JAVA implementation of the StatsD client](https://github.com/tim-gro
         }
     }
 
-{% endhighlight %}
+{{< / highlight >}}
 
 you can then also consider helper methods using runnable and callable to wrap timings around the methods
 
-{% highlight java %}
+{{< highlight java "linenos=table" >}}
 
 
         @Override
@@ -199,6 +199,6 @@ you can then also consider helper methods using runnable and callable to wrap ti
     String result = diagnosticsService.executeWithTimer(
     () -> randomService.getResult(someVar), "SuperAwesomeNameOfTheCounter");
 
-{% endhighlight %}
+{{< / highlight >}}
 
 Enjoy! StatsD is great - I'll look at configuring StatD and graphite in my next post.

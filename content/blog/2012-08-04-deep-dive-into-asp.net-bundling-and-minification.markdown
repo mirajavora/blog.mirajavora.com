@@ -17,7 +17,7 @@ Sometimes, first step is just to bundle the files together without minification.
 
 Unfortunately, there is not a quick flag you can set on the bundle. The good news is, it’s fairly simple. You can create your own transform and pass it to the bundle. Remember to use Bundle instead of StyleBundle or ScriptBundle.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class NonMinifying : IBundleTransform
 {
     private readonly string _contentType;
@@ -43,10 +43,10 @@ public class NonMinifying : IBundleTransform
         bundle.ContentType = _contentType;
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 //... in your app init
 IBundleTransform cssTramsform = new NonMinifying();
 
@@ -54,7 +54,7 @@ var cssBundle = new Bundle("~/Content/themes/base/css", cssTramsform)
             .Include("~/Content/themes/base/jquery.ui.core.css",
             "~/Content/themes/base/jquery.ui.resizable.css");
     BundleTable.Bundles.Add(cssBundle);
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Plugin Your Own Minification
@@ -64,7 +64,7 @@ If you don’t like the default minification that comes in with the System.Web.O
 
 All we need to do is write our own custom SquishIt transform. It will iterate through each file in the bundle and process it.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class SquishItCssTransform<T> : IBundleTransform where T : IMinifier<CSSBundle>
 {
     public void Process(BundleContext context, BundleResponse response)
@@ -85,16 +85,16 @@ public class SquishItCssTransform<T> : IBundleTransform where T : IMinifier<CSSB
         response.ContentType = "text/css";
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 ....
 //in your bundling init
 var cssTransform = new SquishItCssTransform<YuiMinifier>();
 BundleTable.Bundles.Add(new Bundle("~/Content/css", cssTransform)
 .Include("~/Content/site.css"));
-{% endhighlight %}
+{{< / highlight >}}
 
 The SquishItCssTransform takes type of T so you can specify the type of the CSS minifier from the SquishIt library. In this example, I’ve used the YuiMinifier.
 
@@ -104,7 +104,7 @@ CoffeeScript or SASS, no problem!
 
 If you use CoffeeScript for your JavaScript or SASS/LESS for your CSS, the process is pretty much similar. You need to create a new bundle and pass in your custom IBundleTransform. Using CoffeeScript compiler is dead easy.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class JavascriptCoffeeScriptTransform : IBundleTransform
 {
     public void Process(BundleContext context, BundleResponse response)
@@ -129,16 +129,16 @@ public class JavascriptCoffeeScriptTransform : IBundleTransform
         response.ContentType = "text/javascript";
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 //.. your bundling setup ...
 var coffeeBundleAndMinify = new JavascriptCoffeeScriptTransform();
 var coffeeBundle = new Bundle("~/bundles/coffee", coffeeBundleAndMinify)
                        .Include("~/Scripts/Coffee/Script.coffee");
 BundleTable.Bundles.Add(coffeeBundle);
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Now you have a bundle from CoffeeScript files that is compiled and minified.

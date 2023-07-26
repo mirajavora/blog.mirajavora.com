@@ -21,7 +21,7 @@ Real world example
 
 Lets say you want every view model to contain information about the browser that is used. We can create an interface and implement the interface on the view model.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public interface IBrowserDetails
 {
     string BrowserName {get;set;}
@@ -33,11 +33,11 @@ public class HomeModel : IBrowserDetails
     public string BrowserName {get;set;}
     //... other properties
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Then, implement the BrowserModelFilter with IBrowserDetails interface as type. Override the OnModelLoaded method and notice the protected model property with IBrowserDetails as type. Also, don’t forget to register the filter.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class PermissionModelFilter : PresentationModelFilterBase<IBrowserDetails>
 {
     protected override void OnModelLoaded(ResultExecutingContext filterContext)
@@ -46,7 +46,7 @@ public class PermissionModelFilter : PresentationModelFilterBase<IBrowserDetails
         Model.BrowserName = capabilities.Browser;
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 The example above is a trivial. However, you can add complex logic or inject services into your filters.
 
@@ -55,7 +55,7 @@ The PresentationModelFilterBase Class
 
 The implementation of the model filter base class:
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public abstract class PresentationModelFilterBase<T> : ActionFilterAttribute where T : class
     {
         protected T Model;
@@ -72,7 +72,7 @@ public abstract class PresentationModelFilterBase<T> : ActionFilterAttribute whe
  
         protected abstract void OnModelLoaded(ResultExecutingContext filterContext);
      }
-{% endhighlight %}
+{{< / highlight >}}
 
 You can download the whole sample below.
 

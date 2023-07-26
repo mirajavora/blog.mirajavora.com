@@ -24,7 +24,7 @@ The first thing the user needs to do is exchange the user credentials for an acc
 
 In the action below, username and password is captured by the login model and passed down to the authentication service. If the auth service returns a valid user, we can create a short-lived auth token for the user to use. The token is then set in a cookie and returned as part of the response to the user.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 [HttpPost]
 public ActionResult Index(LoginModel model)
 {
@@ -41,7 +41,7 @@ public ActionResult Index(LoginModel model)
  
     return RedirectToAction("Index", "Security");
 }
-{% endhighlight %}
+{{< / highlight >}}
  
 
 Authentication Handler to check the Access Token
@@ -51,7 +51,7 @@ Once you have created your access token, it will be sent to the server every tim
 
 The best way to ensure access token is processed on every request, you can create a custom handler for authentication by inheriting from [DelegatingHandler](http://msdn.microsoft.com/en-gb/library/system.net.http.delegatinghandler.aspx) class.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 {
     var accessToken = request.Headers.GetCookies("token");
@@ -71,26 +71,26 @@ protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage reques
  
     return base.SendAsync(request, cancellationToken);
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 The handler gets the access token from the cookie and attempts to find the user based on the access token. If the user is found, new [GenericIdentity](http://msdn.microsoft.com/en-us/library/system.security.principal.genericidentity.aspx) and [GenericPrincipal](http://msdn.microsoft.com/en-us/library/system.security.principal.genericprincipal.aspx) are created based on the user and user’s roles. You can then assign the [GenericPrincipal](http://msdn.microsoft.com/en-us/library/system.security.principal.genericprincipal.aspx) to the current thread.
 
 Remember to add your AuthenticationHandler to the MessageHandlers in the Web API  GlobalConfiguration
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 ....
 GlobalConfiguration.Configuration.MessageHandlers.Add(
     new AuthenticationHandler(Container.Resolve<IAccessTokenRepository>(),
                               Container.Resolve<IUserRepository>()));
 ...
-{% endhighlight %}
+{{< / highlight >}}
 
 Protect API Actions with Authorize Attribute
 -------------------
 
 Once the user gets authenticated and the user roles are stored on the thread’s IPrincipal, you can you use the in-built [Web API Authorize attribute](http://msdn.microsoft.com/en-us/library/system.web.http.authorizeattribute.aspx) to check whether the user is authenticated. You can even specify roles that user needs to be in to perform a specific action.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 [Authorize]
 public override IEnumerable<Contact> Get()
 {
@@ -102,7 +102,7 @@ public override System.Net.Http.HttpResponseMessage Delete(Guid id)
 {
     return base.Delete(id);
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 If the user is not authenticated or does not have the correct permissions, the server will return 401 HTTP status code.
 

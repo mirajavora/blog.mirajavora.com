@@ -15,7 +15,7 @@ Sprites
 
 One area that I find SASS particularly helpful is sprite creation. The idea optimising your site by pasting few images together and decreasing the number of requests is not new and is pretty cool. Usually, you would create the image and then manually write the CSS or upload the files on-by-one to online services that would create the spites for you. With SASS, you have can create a helper method … and that’s it!
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
 @mixin sprite($image, $numberOfItems) {
     $itemHeight: image-height($image) / $numberOfItems;
     $height: 0;
@@ -38,11 +38,11 @@ One area that I find SASS particularly helpful is sprite creation. The idea opti
  
  
 @include sprite("image.jpeg", 2);
-{% endhighlight %}
+{{< / highlight >}}
 
 This mixin will let you easily create any sprites and result in CSS below. Note the usage of image-url and image-height methods. They are in-build compass features, that will automatically get properties form the set image.
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
 #nav li a {
   background-image: url('/images/image.jpeg?1308598897');
 }
@@ -58,7 +58,7 @@ This mixin will let you easily create any sprites and result in CSS below. Note 
 #nav li a:hover.item2 {
   background-position: 100px 968px;
 }
-{% endhighlight %}
+{{< / highlight >}}
  
 
 If you want to go even further, compass will create sprites for you automatically. Check out sprite utils.
@@ -70,14 +70,14 @@ Mixing CSS
 
 Another cool way to use SASS is the ability to combine multiple scss files together. In this way, you can mix and match between your stylesheets, move your mixins and variables into separate reusable files and then decide what you need. SASS will pull it all together into single file.
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
 @import "_base";
 @import "_reset";
 @import "_mixins";
 @import "_iefixes";
  
 /* scss here */
-{% endhighlight %}
+{{< / highlight >}}
  
 
 Imports all the scss files into a single file – great for re-using parts.
@@ -89,11 +89,11 @@ We push 3-4 apps live every month, most of them based on the grid system. Howeve
 
 Just configure the
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
 $totalWidth: 520;
 $gutterWidth: 20;
 $columns: 12;
-{% endhighlight %}
+{{< / highlight >}}
 
 and you SASS will re-create the grid for you.
 

@@ -13,7 +13,7 @@ Traditionally, settings in ASP.Net apps are stored AppSettings area of the app a
 
 I don’t know how many times I’ve seen this or variations of this.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public static class Settings
 {
     public static string SomeSetting
@@ -21,7 +21,7 @@ public static class Settings
         get { return ConfigurationManager.AppSettings["SomeSetting"] ?? string.Empty; }
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Reasons to avoid static settings class
@@ -49,16 +49,16 @@ The way to get best of both worlds is to have an abstract settings interface, th
 
 First declare the IApplicationSettings interface
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public interface IApplicationSettings
 {
     string TestUrl { get; set; } 
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Create a static class to mirror the settings. Or include the settings that you only need in your views / static context
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public static class Settings
 {
     private static IApplicationSettings _settings;
@@ -73,11 +73,11 @@ public static class Settings
         get { return _settings.TestUrl; }
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Create the container and register the factory via DictionaryAdapterFactory (in your bootstrap or global.asax etc)
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 ...
  
 WindsorContainer container = new WindsorContainer();
@@ -88,12 +88,12 @@ container.Register(
         () => new DictionaryAdapterFactory()
              .GetAdapter<IApplicationSettings>(ConfigurationManager.AppSettings)));
 ...
-{% endhighlight %}
+{{< / highlight >}}
 
 Remember to instantiate your static settings class with the IApplicationSettings (after you registered the factory)
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 Settings.InitSettings(container.Resolve<IApplicationSettings>());
-{% endhighlight %}
+{{< / highlight >}}
 
 Have fun!

@@ -29,7 +29,7 @@ Parse the Webhook Callbacks
 I wanted to provide a library that would take the JSON in the callback and turned that into a polymorphic list of Sendgrid Webhook Events.
 Sendgrid tends to aggregate the callbacks into batches so you usually receive more than 1 event in a single callback.
 
-{% highlight json %}
+{{< highlight json "linenos=inline" >}}
     [
       {
         "email": "john.doe@sendgrid.com",
@@ -45,14 +45,14 @@ Sendgrid tends to aggregate the callbacks into batches so you usually receive mo
         "url": "https://sendgrid.com"
       }
     ]
-{% endhighlight %}
+{{< / highlight >}}
 
 
 ### Using the library
 
 The library allows you to easily deseralise the callbacks and create a list of typed events of a common base. All custom fields, date and list conversions are handled for you.
 
-{% highlight csharp %}
+{{< highlight csharp "linenos=inline" >}}
     var parser = new WebhookParser();
     var events = parser.ParseEvents(json);
 
@@ -67,7 +67,7 @@ The library allows you to easily deseralise the callbacks and create a list of t
     // Event-specific properties
     var clickEvent = webhookEvent as ClickEvent; // Cast to the parent based on EventType
     clickEvent.Url; // string - URL on what the user has clicked
-{% endhighlight %}
+{{< / highlight >}}
 
 Serialisation
 -------------------
@@ -77,7 +77,7 @@ Since we're dealing with JSON - I pulled in a single dependency on the project. 
 The custom serialisation used the type attribute of each event to determine the underlying event type.
 Each event was based of the same base `WebhookEventBase`.
 
-{% highlight csharp %}
+{{< highlight csharp "linenos=inline" >}}
   namespace Sendgrid.Webhooks.Events
   {
       public abstract class WebhookEventBase
@@ -102,13 +102,13 @@ Each event was based of the same base `WebhookEventBase`.
           public IDictionary<string, string> UniqueParameters { get; set; }
       }
   }
-{% endhighlight %}
+{{< / highlight >}}
 
 I have also added couple of custom serialisers that deal with custom date conversion or csv to array. That way you have access to a proper DateTime date and List<String> of categories. You can also delcare the `WebhookParser` with your own version of the `JsonConverter`, allowing for virtually any changes possible.
 
 The custom converters are the `WebhookCategoryConverter`
 
-{% highlight csharp %}
+{{< highlight csharp "linenos=inline" >}}
     namespace Sendgrid.Webhooks.Converters
     {
         public abstract class GenericListCreationJsonConverter<T> : JsonConverter
@@ -149,12 +149,12 @@ The custom converters are the `WebhookCategoryConverter`
             }
         }
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 and `EpochToDateTimeConverter`
 
-{% highlight csharp %}
+{{< highlight csharp "linenos=inline" >}}
     namespace Sendgrid.Webhooks.Converters
     {
         public class EpochToDateTimeConverter : JsonConverter
@@ -186,16 +186,16 @@ and `EpochToDateTimeConverter`
             }
         }
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 Code
 -------------------
 
 Check out the code at [https://github.com/mirajavora/sendgrid-webhooks](https://github.com/mirajavora/sendgrid-webhooks) or pull down from nuget using
 
-{% highlight bash %}
+{{< highlight bash "linenos=inline" >}}
     Install-Package Sendgrid.Webhooks
-{% endhighlight %}
+{{< / highlight >}}
 
 Contributions
 -------------------

@@ -26,9 +26,9 @@ Next, get the compass gem. Compass provides a framework that will translate the 
 
 To get the gem, open up the command prompt and type in
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 gem install compass
-{% endhighlight %}
+{{< / highlight >}}
 
 This will pull down and install the compass gem and all the dependencies.
 
@@ -38,31 +38,31 @@ Once you have pulled down the gem, you can call compass to set-up your project. 
 
 You can either chose to go for the default setup
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 compass create Content
-{% endhighlight %}
+{{< / highlight >}}
 
 or you can try add params to customise the setup
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 $ compass create Content --sass-dir "src" --css-dir "css" --javascripts-
 dir "Javascript"
-{% endhighlight %}
+{{< / highlight >}}
  
 
 This will create the directory structure, config file, adds a default blue-prints and few examples. The example uses “Content” as the project folder, where all CSS, JS, SCSS and images are located.
 
 If you prefer to create just the config file with the folder structure, add the - -bare param
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 $ compass create Content --bare --sass-dir "src" --css-dir "css" --javascripts-
 dir "Javascript
-{% endhighlight %}
+{{< / highlight >}}
 
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 [rectangle setX: 10 y: 10 width: 20 height: 20];
-{% endhighlight %}
+{{< / highlight >}}
   
 Watch the folder for changes
 

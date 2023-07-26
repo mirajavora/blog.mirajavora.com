@@ -62,7 +62,7 @@ Depening on how your code is structured, I tend to add a diamond role that takes
 
 Your dir structure of the role should also look something along these lines
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 
 - tasks
   - main.yml
@@ -73,13 +73,13 @@ Your dir structure of the role should also look something along these lines
 - templates
    - diamond.conf
 
-{% endhighlight %}
+{{< / highlight >}}
 
 #### Configuration
 The role relies on a diamond configuration file. This effectively specifies what handler we're going to use (in this instance graphite), what collectors are enabled and their settings and the intervals in which they are collected.
 The entire file can be found [here](https://gist.github.com/mirajavora/9f6b5cd402c5c6f27df5), but I can pick out few key properties to watch out for.
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 
 # Specify that metrics are sent via graphite handler
 handlers = diamond.handler.graphite.GraphiteHandler
@@ -102,7 +102,7 @@ port = 2003
 path_prefix = your-metrics
 path_suffix = suff
 
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Building custom collectors

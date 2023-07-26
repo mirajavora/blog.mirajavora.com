@@ -33,9 +33,9 @@ You can then copy the Release files to your desired directory, for example C:\Re
 
 Once you have your redis server built and the config file in place, you can open up C:\Redis\bin\ folder in command prompt and run:
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 redis-server.exe C:\redis\bin\redis.conf
-{% endhighlight %} 
+{{< / highlight >}} 
 
 The server will start up and give you a heart-beat ever five seconds with the number of connected clients. It’s very important that you specify the config file. If you don’t redis will use the default config and SignalR will not be able use the queues.
 
@@ -43,9 +43,9 @@ The server will start up and give you a heart-beat ever five seconds with the nu
 
 Now that you’ve got the redis server running, you can connect with your clients. To test your redis server, you can connect with a console client. Open up another command prompt, navigate to C:\Redis\bin\ and type in
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 redis-cli -h localhost -p 6379
-{% endhighlight %} 
+{{< / highlight >}} 
 
 You should get a successful connect message redis localhost:6379>
 
@@ -60,12 +60,12 @@ Wiring up SignalR and Redis is really, really simple and takes only two steps. F
 
 Then, you could call **UseRedis** extension method on SignalR DependencyResolver to register Redis as your backplane in your global.asax.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 //... your existing code
  
 RouteTable.Routes.MapConnection<DistributedConnection>("echo", "echo/{*operation}");
 GlobalHost.DependencyResolver.UseRedis("localhost", 6379, "", new [] {"signalr.key"});
-{% endhighlight %} 
+{{< / highlight >}} 
 
 You can push the setting to your web.config and use a settings class instead of hard-coding them. Since I’m running the server locally, I use “localhost” as my host, the default 6379 port and I pass in an empty string as my authentication pass.  Also, you have to specify event key name. You change the port number and password by editing the **redis.conf** file.
 

@@ -20,7 +20,7 @@ In my example, I will use Win Forms app to poll Instagram for latest images base
 
 First of all, I need a Hub in the web project to which my clients will connect to.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ImagesHub : Hub
 {
     public void PublishPhoto(string url)
@@ -28,11 +28,11 @@ public class ImagesHub : Hub
         Clients.receive(url);
     }
 }
-{% endhighlight %}  
+{{< / highlight >}}  
 
 The hub will receive the url of the latest image and pass it to the clients using the **Clients dynamic property**. We can add a bit of JavaScript to let the client connect to the hub and listen to the receive callback. Once the data is received on the client, I use jsrender to take the value and render the image in the div container.
 
-{% highlight javascript %}
+{{< highlight js "linenos=table" >}}
 var imagesHub = undefined;
 
 var init = function() {
@@ -44,7 +44,7 @@ var init = function() {
 };
 
 init();
-{% endhighlight %} 
+{{< / highlight >}} 
  
 
 Creating a Connection and a Proxy
@@ -52,7 +52,7 @@ Creating a Connection and a Proxy
 
 On the win forms side, we can then establish a hub connection. The HubConnection class takes url as its parameter. This is the url of your web project that contains the hubs. You can then create a proxy for the hub using the hub name and start the connection afterwards.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 private HubConnection _connection;
 private IHubProxy _imageHub;
  
@@ -67,14 +67,14 @@ private void Init()
     //start the connection
     _connection.Start();
  }
-{% endhighlight %}  
+{{< / highlight >}}  
 
 Invoke a method on the Hub using a Proxy
 -------------------
 
 Once you establish the connection, you will be able to use the hub proxies to invoke the PublishPhoto method on the ImagesHub. Calling Invoke method will execute the IHub method asynchronously and return the Task.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 var image = GetImageToPublish(...);
  
 _imageHub.Invoke("PublishPhoto", image).ContinueWith(task =>
@@ -88,7 +88,7 @@ _imageHub.Invoke("PublishPhoto", image).ContinueWith(task =>
          //your success logic
     }
 });
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Download the Sample
 -------------------

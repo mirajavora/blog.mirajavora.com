@@ -16,10 +16,10 @@ The Clients dynamic property of the Hub gives you access to all clients connecte
 
 This is where the static **GlobalHost** SignalR class comes to rescue. It gives you access to the HubContext through the IConnectionManager interface.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 var myHub = GlobalHost.ConnectionManager.GetHubContext<FeedHub>();
 var result = myHub.Clients.receiveData(yourData);
-{% endhighlight %}
+{{< / highlight >}}
 
 The IHubContext, which is returned from the GetHubContext<T> exposes the **dynamic Clients and IGroupManager Groups**. This means that you can get access to the clients connected to the hubs from anywhere in your app. Pretty cool.
 
@@ -30,16 +30,16 @@ Lets assume, we want to add functionality to our [existing example](/signalr-int
 
 Lets create the hub first. It is actually just a proxy between the JS client and the controller so it could be empty since all methods are called via the Clients dynamic variable.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class FeedHub : Hub
 {
  
 }
-{% endhighlight %} 
+{{< / highlight >}} 
 
 Then, we need a controller that will create and publish the items to the clients via the FeedHub.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ManageController : Controller
 {
     private readonly IRepository _repository;
@@ -82,11 +82,11 @@ public class ManageController : Controller
         return RedirectToAction("Index");
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Finally, we need to wire-up the front-end with Javascript and template file to render the data coming from the server
 
-{% highlight javascript %}
+{{< highlight js "linenos=table" >}}
 function Feed() {
     var feedHub = undefined;
  
@@ -115,7 +115,7 @@ function Feed() {
         </div>
     </li>
 </script>
-{% endhighlight %}
+{{< / highlight >}}
  
 
 Simple as that – the static GlobalHost class gives you the full power to push data to clients via any existing hub. Any questions, ping me [@mirajavora](http://twitter.com/mirajavora)

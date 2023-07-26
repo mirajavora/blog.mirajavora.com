@@ -61,15 +61,15 @@ This means the existing apps just added a new appender that would log to an UDP 
 
 This made the whole logstash config really simple
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 TODO
-{% endhighlight %}
+{{< / highlight >}}
 
 Changes to the Log4net appender
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 TODO
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Adding Graylog2 into the mix
@@ -83,10 +83,10 @@ it let's you do complex queries on the data and create custom dashboards.
 
 If you have an instance of Graylog2 running somewhere, it's easy to use the gelf output to channel all the incoming logs into Logstash into Graylog2.
 
-{% highlight bash %}
+{{< highlight bash "linenos=table" >}}
 TODO full logstash config
 
-{% endhighlight %}
+{{< / highlight >}}
 
 A result will be a centralised stream of logs that you can easily analyse and create dashboards from. 
 The beauty of logstash is that you can easily add further outputs (eg graphite). 

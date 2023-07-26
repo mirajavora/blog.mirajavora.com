@@ -28,7 +28,7 @@ Luckily for us, the ASP.NET now ships with a new library called System.Web.Optim
 
 It lets you define bundles at application start and pass them to the BundleCollection. Creating a basic new bundle is quite simple. Let’s assume we would like to combine few CSS files
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 protected void Application_Start()
 {
     ... other startup logic
@@ -38,12 +38,12 @@ protected void Application_Start()
             "~/Content/themes/base/jquery.ui.resizable.css");    
     BundleTable.Bundles.Add(cssBundle);
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 You can also create bundles for your JavaScript.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 protected void Application_Start()
 {
     ... other startup logic
@@ -53,7 +53,7 @@ protected void Application_Start()
                         "~/Scripts/jquery.validate*"));
     BundleTable.Bundles.Add(jsValidationBundle);
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Both StyleBundle and ScriptBundle take url of the bundled file as a constructor argument and use extension method .Include to add files. You can also use wildcard characters such as * in the include array. If you want to add the entire folder, use IncludeDirectory extension.
 
@@ -64,26 +64,26 @@ Rendering Helpers
 
 The library also comes with two awesome helpers. When you develop locally, you want to have all the bundling setup, but you don’t want the bundling and minification to happen – it’s much easier to debug. The System.Web.Optimization has two helpers that address exactly that issue.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
     <head>
         ... other content
         @Styles.Render("~/Content/themes/base/css", "~/Content/css")
         @Scripts.Render("~/bundles/jqueryval")
     </head>
-{% endhighlight %}
+{{< / highlight >}}
     
 When you run the debug setting in the compilation element in your web.config as false, the Styles and Scripts helpers will render the bundled files. However, settings debug=”true” will render them unbundled. Pretty cool!
 
-{% highlight xml %}
+{{< highlight xml "linenos=table" >}}
 <system.web>
     .....
     <compilation debug="false" targetFramework="4.5" />
     ....
 </system.web>
-{% endhighlight %}
+{{< / highlight >}}
 
 And that’s not everything, the minified files will also have cache busting string attached based on the files in the bundles.
 
-{% highlight html %}
+{{< highlight html "linenos=table" >}}
 <link href="/Content/themes/base/css?v=UM624qf1uFt8dYtiIV9PCmYhsyeewBIwY4Ob0i8OdW81" rel="stylesheet" type="text/css" />
-{% endhighlight %}
+{{< / highlight >}}

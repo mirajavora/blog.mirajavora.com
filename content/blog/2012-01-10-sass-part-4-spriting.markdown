@@ -29,7 +29,7 @@ One of the most common sprites – rollover image. First, place the two image st
 
 First declare the mixin and import compass lib for spriting
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 @import "compass/utilities/sprites/base";
 @mixin spriteHoverButton($selector, $spriteMap) {
     #{$selector} {
@@ -45,25 +45,25 @@ First declare the mixin and import compass lib for spriting
         background-position: sprite-position($spriteMap, hover);
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Then define the sprite map from the images (this will create the sprite)
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 $continue: sprite-map("submit/*.png");
-{% endhighlight %}
+{{< / highlight >}}
 
 You will notice that submit-{hash}.png was created. Finally, use the mixin to create the CSS button with specified selector
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 @include spriteHoverButton('a.continue', $continue);
-{% endhighlight %}
+{{< / highlight >}}
 
 Remember, every time you update the images in the submit folder, compass will automatically re-generate the sprite and update the dimensions.
 
 Generated CSS
 
-{% highlight css %}
+{{< highlight css "linenos=table" >}}
 /** Submit Sprite **/
 a.continue {
   float: left;
@@ -78,7 +78,7 @@ a.continue {
 a.continue:hover {
   background-position: 0 0;
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Creating Icons Sprite
 -------------------
@@ -87,20 +87,20 @@ Alternatively, instead of defining the sprite map and getting properties using t
 
 Simply place all the images in the single directory. EG /images/icons/one.png /images/icons/two.png …..  Then, import the compass spriting base and the icons folder
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 @import "compass/utilities/sprites/base";
 @import "icons/*.png";
-{% endhighlight %}
+{{< / highlight >}}
 
 And finally call all-{foldername}-sprites mixin. Make sure you use the correct foldername, IE if folder name was icons, then the call would be all-icons-sprites.
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 @include all-icons-sprites;
-{% endhighlight %}
+{{< / highlight >}}
 
 This will go through every single png file in the folder and create sprite markup using the image name.  Resulting in following CSS
 
-{% highlight ruby %}
+{{< highlight ruby "linenos=table" >}}
 .icons-sprite, .icons-four, .icons-one, .icons-three, .icons-two {
   background: url('/images/icons-s337020fd3d.png') no-repeat;
 }
@@ -120,7 +120,7 @@ This will go through every single png file in the folder and create sprite marku
 .icons-two {
   background-position: 0 -111px;
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Have fun! If you like to know more or are just bored, follow me on @mirajavora :-)
 

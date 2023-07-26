@@ -17,7 +17,7 @@ A Common Scenario
 
 Retrieving a persisted domain object from the database that is then passed to the ViewModel. Lets assume we have a database of books and we want to get a single book by it’s ID.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public ActionResult Book(Guid? id)
 {
     if (!id.HasValue) 
@@ -30,14 +30,14 @@ public ActionResult Book(Guid? id)
     var model = new BookModel() { Book = book };
     return View(model);
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Binder Code
 -------------------
 
 Rather than doing all the lookup work in the controller, you can create a BookBinder that will call the repo and retrieve the Book object by given ID. The BinderBase expects the type of the domain object and the type of the ID. It auto-converts the value from IValueProviders into the expected ID type and calls BindModelWithId.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class BookBinder : BinderBase<Book, Guid>
 {
     private readonly IRepository _repository;
@@ -101,7 +101,7 @@ public interface IFilteredBinder : IModelBinder
 {
     Type ShouldBind { get; }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Using Model Binders To Retrieve The Book Object
@@ -109,7 +109,7 @@ Using Model Binders To Retrieve The Book Object
 
 You can then use your binder on your Controller Action
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public ActionResult Book(Book book)
 {
     if (book == null)
@@ -118,7 +118,7 @@ public ActionResult Book(Book book)
     var model = new BookModel() {Book = book};
     return View(model);
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 A Smart Way To Wire-Up Your Model Binders
@@ -126,7 +126,7 @@ A Smart Way To Wire-Up Your Model Binders
 
 Registering binders one-by-one in the Global.asax or prefixing them in the Action gets tedious and it’s easy to make a mistake. A smarter way is to implement a default model binder and decide which binder to use based on ShouldBind property of each IFilteredBinder.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 public class ModelBinderBroker : DefaultModelBinder
 {
     private readonly IEnumerable<IFilteredBinder> _binders;
@@ -145,7 +145,7 @@ public class ModelBinderBroker : DefaultModelBinder
         return binder == null ? base.BindModel(controllerContext, bindingContext) : binder.BindModel(controllerContext, bindingContext);
     }
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Register Your Binder Broker In Global.asax
@@ -153,7 +153,7 @@ Register Your Binder Broker In Global.asax
 
 You can then set your custom ModelBinderBroker as the DefaultBinder.
 
-{% highlight c# %}
+{{< highlight csharp "linenos=table" >}}
 protected void Application_Start()
 {
     var container = new Castle.Windsor.WindsorContainer();
@@ -173,7 +173,7 @@ private void RegisterBinders(IWindsorContainer container)
 {
     ModelBinders.Binders.DefaultBinder = container.Resolve<ModelBinderBroker>();
 }
-{% endhighlight %}
+{{< / highlight >}}
 
 Download code
 -------------------

@@ -56,7 +56,7 @@ This means the existing apps just added a new appender that would log to an UDP 
 
 This made the whole logstash config really simple
 
-{% highlight json %}
+{{< highlight json "linenos=table" >}}
     input { 
         udp { 
           port => 5960 
@@ -66,11 +66,11 @@ This made the whole logstash config really simple
           type => "log4net" 
         }
     }
-{% endhighlight %}
+{{< / highlight >}}
 
 Changes to the Log4net appender were straight-forward too.
 
-{% highlight xml %}
+{{< highlight xml "linenos=table" >}}
 ... 
         <appender name="UdpAppender" type="log4net.Appender.UdpAppender">
             <RemoteAddress value="127.0.0.1" /> <!-- set to 127.0.0.1 and host name mapped to this on my machine (port 80) -->
@@ -90,7 +90,7 @@ add the appender to the root loggers
 			<appender-ref ref="UdpAppender" />
 		</root>
 
-{% endhighlight %}
+{{< / highlight >}}
 
 
 Adding Graylog2 into the mix
@@ -105,7 +105,7 @@ it let's you do complex queries on the data and create custom dashboards.
 If you have an instance of Graylog2 running somewhere, it's easy to use the gelf output to channel all the incoming logs into Logstash into Graylog2.
 The full logstash config could then look something like this:
 
-{% highlight json %}
+{{< highlight json "linenos=table" >}}
 
 input { 
 	udp { 
@@ -145,7 +145,7 @@ output {
   stdout { }
 }
 
-{% endhighlight %}
+{{< / highlight >}}
 
 A result will be a centralised stream of logs that you can easily analyse and create dashboards from. 
 The beauty of logstash is that you can easily add further outputs (eg graphite). 
