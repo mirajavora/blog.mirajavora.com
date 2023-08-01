@@ -32,8 +32,7 @@ menu:
       pageRef: /about-me
       weight: 40
 Params:
-  description: John Doe's Personal blog about everything
-  copyright: John Doe
+  copyright: Mira Javora
   opengraph: true
   schema: true
   twitter_cards: true
