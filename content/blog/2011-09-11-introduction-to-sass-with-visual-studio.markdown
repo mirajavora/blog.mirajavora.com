@@ -6,6 +6,7 @@ comments: true
 tags: [SASS, CSS, Visual Studio]
 summary: "Syntactically Awesome Stylesheets (SASS) aims to make writing CSS easy, re-usable and less repetitive.  The new SCSS (Sassy CSS) syntax makes use of variables, mixins, nested rules and inheritance to achieve this goal. Furthermore, I will show you how to use compass to leverage in-built functionality. This series of posts will not argue between SASS and LESS, it will be a quick guide on how to get up and running with SASS within VS and how SASS can help you."
 thumbnail: /images/posts/sass/sass_thumb.jpg
+archive: 2011
 ---
 
 Syntactically Awesome Stylesheets (SASS) aims to make writing CSS easy, re-usable and less repetitive.  The new SCSS (Sassy CSS) syntax makes use of variables, mixins, nested rules and inheritance to achieve this goal. Furthermore, I will show you how to use compass to leverage in-built functionality. This series of posts will not argue between SASS and LESS, it will be a quick guide on how to get up and running with SASS within VS and how SASS can help you.

@@ -5,7 +5,12 @@ title: 'Mira Javora Blog'
 permalinks:
   page:
     blog: /:slug/
+  
 
+taxonomies:
+  category: categories
+  tag: tags
+  archive: archive
 
 paginate: '10'
 theme: mainroad
@@ -83,4 +88,3 @@ Params:
     recent_num: 5
     categories_counter: false
     tags_counter: false
-
