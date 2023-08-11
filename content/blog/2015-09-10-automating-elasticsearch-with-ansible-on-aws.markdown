@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/ansible/ansible-logo.png
 summary: "There is so much to love about Elastic Search. If you, like me, end up creating more than one cluster, you start to think about automating the task whole task including infrastructure. Cloudformation and ansible scripts can make this tedious job super simple."
 tags: [ansible, elasticsearch, deployment, ubuntu, aws]
+archive: 2015
 ---
 
 There is so much to love about Elastic Search. If you, like me, end up creating more than one cluster, you start to think about automating the task whole task including infrastructure.

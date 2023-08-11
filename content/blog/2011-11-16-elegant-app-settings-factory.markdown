@@ -5,6 +5,7 @@ date: 2011-11-16 11:53:00 +0000
 comments: true
 summary: "Traditionally, settings in ASP.Net apps are stored AppSettings area of the app as a key-value store. More complex apps would create specific config sections. The app would then have a static settings wrapper that would read the content from the web.config."
 tags: [C#, Castle Windsor, ASP.NET]
+archive: 2011
 ---
 
 Traditionally, settings in ASP.Net apps are stored AppSettings area of the app as a key-value store. More complex apps would create specific config sections. The app would then have a static settings wrapper that would read the content from the web.config.

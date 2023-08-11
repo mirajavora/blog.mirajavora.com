@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/razor/EmailTemplate_thumb.png
 summary: "A larger web projects would typically consist not only of front end web project, but would include additional class libraries and offload some of the heavy processing work to service or console apps. The common problem is then how do you update the front-end and signal the site that some work has been completed."
 tags: [C#, Razor, Asp.Net, Visual Studio]
+archive: 2012
 ---
 
 Sooner of later, there comes a point you will be asked to implement email templates. Tools such as Campaign Monitor are useful, but they are not cost-effective when you reach a larger number of users and you have in-house skills to create an email system.

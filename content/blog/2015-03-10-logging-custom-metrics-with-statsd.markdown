@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/statsd/metrics.png
 summary: "If you don't track it, you can't measure it. Realtime service and business metrics should be part of any production application.  Knowing how is the app performing is as important as measuring whether the product impact of your changes."
 tags: [statsd, metrics, graphite, etsy]
+archive: 2015
 ---
 
 Application monitoring and service metrics

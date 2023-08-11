@@ -5,6 +5,7 @@ date: 2012-09-25 22:31:00 +0000
 comments: true
 summary: "A larger web projects would typically consist not only of front end web project, but would include additional class libraries and offload some of the heavy processing work to service or console apps. The common problem is then how do you update the front-end and signal the site that some work has been completed."
 tags: [C#, SignalR, Asp.Net, Visual Studio, MVC]
+archive: 2012
 ---
 
 *This article is a third in a series dedicated to SignalR. My previous article looked at pushing data using IHubContext.*

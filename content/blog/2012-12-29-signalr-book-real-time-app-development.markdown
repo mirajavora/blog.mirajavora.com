@@ -5,6 +5,7 @@ date: 2012-12-10 21:56:00 +0000
 comments: true
 summary: "About a month ago, I was approached by Packt Publishing to write a book on SignalR. The idea was to write a book that would guide you through various SignalR components using some sort of real-world example. I was up for it and the publisher seemed very keen."
 tags: [SignalR, Book, Leanpub]
+archive: 2012
 ---
 
 About a month ago, I was approached by [Packt Publishing](http://www.packtpub.com/) to write a book on SignalR. The idea was to write a book that would guide you through various SignalR components using some sort of real-world example. I was up for it and the publisher seemed very keen.

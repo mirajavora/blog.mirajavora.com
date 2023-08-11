@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/octopress/logo.jpeg
 summary: "I've been looking to re-launch my blog recently and be a bit more active in contributing to the community. While doing so, I wanted to change my existing blogging platform as well as hosting."
 tags: [Blog, Octopress, Hosting]
+archive: 2014
 ---
 
 I've been looking to re-launch my blog recently and be a bit more active in contributing to the community. While doing so, I wanted to change my existing blogging platform as well as hosting.

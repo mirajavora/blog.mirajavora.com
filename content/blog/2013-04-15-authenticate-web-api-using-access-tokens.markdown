@@ -5,6 +5,7 @@ date: 2013-04-15 22:52:30 +0000
 comments: true
 summary: "In a common Web API scenario, you may want to secure your endpoints so that certain actions can only be executed by authenticated users who posses the correct permissions and are authorised to access the endpoints. For example, you would not want expose your DELETE endpoint of a resource to the general public.This problem is traditionally solved by Authentication and Authorization and your credentials are passed along with the request to the server. An alternative is to exchange the username and password for a short-lived access token and use this access token to perform the protected actions. This solution does not fit every scenario,  however, it means that if the access token gets exposed, the user credentials are not revealed."
 tags: [WebApi, C#, AspNet]
+archive: 2013
 ---
 
 In a common Web API scenario, you may want to secure your endpoints so that certain actions can only be executed by authenticated users who posses the correct permissions and are authorised to access the endpoints. For example, you would not want expose your DELETE endpoint of a resource to the general public.

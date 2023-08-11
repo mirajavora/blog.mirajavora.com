@@ -5,6 +5,7 @@ date: 2012-08-04 21:50:00 +0000
 comments: true
 summary: "In the previous post, I went on about how to use System.Web.Optimization library to minimize your page load times. However, the new library offers quite a lot of extensibility and even if you don’t want to use the default minification, you can still use the framework."
 tags: [C#, MVC, Bundling, CSS, Javascript, Visual Studio]
+archive: 2012
 ---
 
 In the previous post, I went on about how to use System.Web.Optimization library to minimize your page load times. However, the new library offers quite a lot of extensibility and even if you don’t want to use the default minification, you can still use the framework.

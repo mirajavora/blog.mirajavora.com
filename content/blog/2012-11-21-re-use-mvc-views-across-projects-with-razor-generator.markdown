@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/razor/Razor-Generator-Extension_thumb.png
 summary: "You may consider storing the content in a resource file and embed it in a class library. Or perhaps do a clever virtual directory mapping in your IIS setup. However, the best solution is simply to compile the views into a class library using Razor Generator."
 tags: [Asp.Net, Razor, Visual Studio, C#]
+archive: 2012
 ---
 
 A typical MVC site would consist of a folder containing all the views and partials that are then rendered using a view engine. However, it can get a little tricky when you want to **re-use the same view template across multiple projects without content duplication**. Perhaps you want to re-use a small partial with tracking code or even entire views for common actions such as login / reporting.

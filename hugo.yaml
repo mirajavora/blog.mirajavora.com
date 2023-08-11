@@ -82,6 +82,7 @@ Params:
       - recent
       - categories
       - taglist
+      - archive
       - social
       - languages
   widgets:

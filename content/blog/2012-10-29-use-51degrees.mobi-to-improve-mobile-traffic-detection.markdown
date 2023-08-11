@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/51degrees/blog-51Degrees-Nuget_thumb.png
 summary: "The default browser compatibilities mobile detection in ASP.NET in System.Web.HttpBrowserCapabilitiesBase is pretty poor. It ignores majority of the mobile devices and since it does not update on regular basis, it will ignore any new devices as well. Simply put, if you are using mobile-specific views then most mobile devices will get only the desktop views, because the device will be not recognised as a mobile device."
 tags: [Asp.Net, Mobile, 51Degrees]
+archive: 2012
 ---
 
 The default browser compatibilities mobile detection in ASP.NET in *System.Web.HttpBrowserCapabilitiesBase* is pretty poor. It ignores majority of the mobile devices and since it does not update on regular basis, it will ignore any new devices as well. Simply put, if you are using [mobile-specific views](http://msdn.microsoft.com/en-us/magazine/hh975347.aspx) then most mobile devices will get only the desktop views, because the device will be not recognised as a mobile device.

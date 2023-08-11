@@ -5,6 +5,7 @@ date: 2012-08-21 21:14:00 +0000
 comments: true
 summary: "The new **System.Web.WebPages 2.0.0.0** assembly that ships with the latest MVC4 contains a pretty cool feature that lets you override the current browser capabilities. Sure, most modern browsers let you set a custom user agent string out of the box or via extensions. However, there are certain scenarios, where you would want to switch the user agent on the server side. That’s where the **BrowserHelpers** class comes in handy."
 tags: [C#, MVC, Asp.Net, Visual Studio]
+archive: 2012
 ---
 
 The new **System.Web.WebPages 2.0.0.0** assembly that ships with the latest MVC4 contains a pretty cool feature that lets you override the current browser capabilities. Sure, most modern browsers let you set a custom user agent string out of the box or via extensions. However, there are certain scenarios, where you would want to switch the user agent on the server side. That’s where the **BrowserHelpers** class comes in handy.

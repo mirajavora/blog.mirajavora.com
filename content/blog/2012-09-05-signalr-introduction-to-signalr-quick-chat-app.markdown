@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/signalr/NuGet_thumb.png"
 summary: "SignalR is an open source async signalling library. It was made by David Fowler and Damian Edwards. In a nutshell, it allows you to pass data between client and server in realtime. It’s not only for web, it has JS, .Net, WP7 and Silverlight clients and supports self-hosting so you can run the SignalR server in win service or web context. It will run on .Net 4.0 or 4.5 and to get websockets running, you will need IIS8 or IIS8 Express. That said, it will run on older versions of IIS and will switch to different transport modes."
 tags: [C#, SignalR, Asp.Net, Visual Studio]
+archive: 2012
 ---
 
 *This article is an introduction to a series I will be publishing over the next few weeks. All based on SignalR and common scenarios when utilising this awesome library in web development.*

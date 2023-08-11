@@ -6,6 +6,7 @@ comments: true
 thumbnail: /images/posts/webapi/blog-webapi_thumb.png
 summary: "There are several options you can go for when deciding what technology you adopt for your RESTful API. In fact, you’ve got lots to chose from."
 tags: [WebAPI, Asp.Net, MVC, C#]
+archive: 2013
 ---
 
 <img src="/images/posts/webapi/blog-webapi_thumb.png" class="post-image-right" />
