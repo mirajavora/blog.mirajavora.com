@@ -6,6 +6,8 @@ comments: true
 summary: "Minimising the number of requests the page has to perform can have a considerable effect on your site’s performance. IE6 and IE7 both limit the number of concurrent requests to 2, IE8 can handle up to 6. There is a lot you can to improve the initial load speed speed – one of which is bundling all your CSS and JS into two separate files. How much of a difference it could do. Well, as it turns out up to 30seconds on slower connections."
 tags: [C#, MVC, Bundling, CSS, Javascript, Visual Studio]
 archive: 2012
+aliases:
+    - /bundling-and-minification-with-asp.net
 ---
 
 

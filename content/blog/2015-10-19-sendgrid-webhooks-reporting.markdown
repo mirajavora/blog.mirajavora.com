@@ -7,6 +7,8 @@ thumbnail: /images/posts/sendgrid/sendgrid-stats-small.png
 summary: "Over the years, I've used several providers and techniques to send out email. I used IIS, AWS and few key email providers. The bottom line is, the more email you send, the more you want to rely on a 3rd party to take that burden from your hands."
 tags: [sendgrid, metrics, kibana, elasticsearch, kafka]
 archive: 2015
+aliases:
+    - /sendgrid-webhooks-reporting/
 ---
 
 Over the years, I've used several providers and techniques to send out email. I used IIS, AWS and few key email providers.

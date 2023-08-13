@@ -6,6 +6,8 @@ comments: true
 summary: "Statistically Awesome Style Sheets with Compass can help you easily generate sprites. Not only that, it will re-generate the images, re-calculate the position and update the CSS every time you update the source images. This post explains the basics and aims to address the most common scenarios when creating sprites."
 tags: [C#, Castle Windsor, ASP.NET]
 archive: 2012
+aliases:
+  - /sass-part-4-spriting
 ---
 
 Statistically Awesome Style Sheets with Compass can help you easily generate sprites. Not only that, it will re-generate the images, re-calculate the position and update the CSS every time you update the source images. This post explains the basics and aims to address the most common scenarios when creating sprites.
