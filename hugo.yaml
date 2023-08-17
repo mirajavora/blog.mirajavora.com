@@ -14,13 +14,12 @@ taxonomies:
 
 paginate: '10'
 theme: mainroad
-disqusShortname: ""
-googleAnalytics: ''
+disqusShortname: "mirajavorablog"
+googleAnalytics: 'UA-526463-4'
 Author:
   name: Mira Javora
   bio: >-
-    John Doe's true identity is unknown. Maybe he is a successful blogger or
-    writer. Nobody knows it.
+    Accomplished Engineering Manager | Big data and Distributed Systems Enthusiast.
   avatar: /images/about/mira.jpeg
 menu:
   main:

@@ -16,6 +16,3 @@ Are you bored to death yet? No? [check out my LinkedIn](https://www.linkedin.com
 <script src="//platform.linkedin.com/in.js" type="text/javascript"></script><script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/mirajavora" data-format="inline" data-related="false"></script>
 
 otherwise, **feel free to tweet me [@mirajavora](http://twitter.com/mirajavora)**
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@mirajavora" />
