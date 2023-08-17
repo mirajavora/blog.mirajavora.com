@@ -21,7 +21,7 @@ Author:
   bio: >-
     John Doe's true identity is unknown. Maybe he is a successful blogger or
     writer. Nobody knows it.
-  avatar: img/avatar.png
+  avatar: /images/about/mira.jpeg
 menu:
   main:
     - name: Home
@@ -89,3 +89,5 @@ Params:
     recent_num: 5
     categories_counter: false
     tags_counter: false
+    social:
+      linkedin: mirajavora
