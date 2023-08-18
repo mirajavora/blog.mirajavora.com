@@ -1,0 +1,92 @@
+baseURL: 'http://blog.mirajavora.com/'
+languageCode: 'en-us'
+title: 'Mira Javora Blog'
+
+permalinks:
+  page:
+    blog: /:slug/
+  
+
+taxonomies:
+  category: categories
+  tag: tags
+  archive: archive
+
+paginate: '10'
+theme: mainroad
+disqusShortname: "mirajavorablog"
+googleAnalytics: 'UA-526463-4'
+Author:
+  name: Mira Javora
+  bio: >-
+    Accomplished Engineering Manager | Big data and Distributed Systems Enthusiast.
+  avatar: /images/about/mira.jpeg
+menu:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Projects
+      pageRef: /projects
+      weight: 20
+    - name: Talks
+      pageRef: /talks
+      weight: 30
+    - name: About me
+      pageRef: /about-me
+      weight: 40
+Params:
+  copyright: Mira Javora
+  opengraph: true
+  schema: true
+  twitter_cards: true
+  readmore: false
+  authorbox: true
+  toc: true
+  pager: true
+  post_meta:
+    - author
+    - date
+    - categories
+    - translations
+  dateformat: '2006-01-02'
+  mathjax: true
+  mathjaxPath: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js'
+  mathjaxConfig: TeX-AMS-MML_HTMLorMML
+  googleFontsLink: 'https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700'
+  customCSS:
+    - css/custom.css
+  customJS:
+    - js/custom.js
+  subtitle: ''
+  highlightColor: ''
+  style:
+    vars:
+      highlightColor: '#e22d30'
+      fontFamilyPrimary: '''Open Sans'', Helvetica, Arial, sans-serif'
+      fontFamilySecondary: >-
+        SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier
+        New', monospace
+  logo:
+    title: Mira Javora Blog
+  thumbnail:
+    visibility:
+      - list
+  sidebar:
+    home: right
+    list: right
+    single: right
+    widgets:
+      - search
+      - recent
+      - categories
+      - taglist
+      - archive
+      - social
+      - languages
+  widgets:
+    recent_num: 5
+    categories_counter: false
+    tags_counter: false
+    social:
+      linkedin: mirajavora
