@@ -59,7 +59,7 @@ However, I prefer to have them running as part of my [ansible scripts](http://do
 #### Install Diamond via ansible
 Depening on how your code is structured, I tend to add a diamond role that takes care of installing all the dependencies, adding the configuration and any custom collectors I may have.
 
-{% gist b85b0606591bbc8ad90e diamond.yml %}
+{{< gist mirajavorab85b0606591bbc8ad90e diamond.yml >}}
 
 Your dir structure of the role should also look something along these lines
 
@@ -113,6 +113,6 @@ Rather than building a cron job, custom collector was perfect for that use-case.
 
 Your collector needs to inherit from the **diamond.collector.Collector** and implement the **collect** method. You can [check out the base class here](https://github.com/python-diamond/Diamond/blob/master/src/diamond/collector.py) for more info on what's exposed to you while writing the collector.
 
-{% gist af8a2298542b8a23d694 HealthCheckCollector.py %}
+{{< gist mirajavora af8a2298542b8a23d694 HealthCheckCollector.py >}}
 
 There is also an [example collector on the github page of the project](https://github.com/python-diamond/Diamond/blob/master/src/collectors/example/example.py).

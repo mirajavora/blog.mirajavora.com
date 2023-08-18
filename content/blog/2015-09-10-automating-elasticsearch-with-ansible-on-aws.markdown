@@ -57,7 +57,7 @@ is it to build a two-three node cluster, but there's always scope for human erro
 
 I created a fairly simple Cloudformation script that I've been re-using. It creates a multi-node auto-scaling group of ubuntu machines, security groups and ES role for the instances.
 
-{% gist 65db44bf44507e74f6fe cloudformation-aws-elasticsearch.json %}
+{{< gist mirajavora 65db44bf44507e74f6fe cloudformation-aws-elasticsearch.json >}}
 
 Please change the security groups based on what you need - at the moment they allow access from any IP. You may also need to tweak to rules so that instances have visibility of each other depending on your setup.
 
