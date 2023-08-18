@@ -2,17 +2,14 @@
 layout: page
 title: "About Me"
 comments: true
+authorbox: false
+pager: true
 ---
 
-Principal software engineer with a strong focus on web-based applications, I'm interested in agile development methods and test-driven development. Excited by solving problems and a fan of big data.
+{{< figure src="/images/about/mira.jpeg" class="list__thumbnail thumbnail" alt="Mira Javora" >}}
 
-A strong background in .NET (C#), JAVA and HTML/CSS/JS, I've been recently spending most of my time with Scala, JAVA, Couchbase, Elastic Search and Apache Kafka.
+Accomplished Engineering Manager, big data and distributed systems enthusiast.
 
-My past projects also included PHP, RavenDB, Oracle, MS SQL, MySQL, MSMQ and more
+Ex-Skyscanner, Ex-Microsoft, Ex-Argo AI with a proven track record of leading and delivering a broad variety of projects from infrastructure, enamblement, analytics and user engagmeent & onboarding services domains.
 
-
-Are you bored to death yet? No? [check out my LinkedIn](https://www.linkedin.com/in/mirajavora) then ;-)
-
-<script src="//platform.linkedin.com/in.js" type="text/javascript"></script><script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/mirajavora" data-format="inline" data-related="false"></script>
-
-otherwise, **feel free to tweet me [@mirajavora](http://twitter.com/mirajavora)**
+{{< linkedinscript >}}
